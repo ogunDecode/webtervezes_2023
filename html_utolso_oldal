@@ -30,11 +30,17 @@
         color: #fff;
         width: 50%;
       }
+
+      #kor {
+        border: 2px solid rgb(204, 233, 198);
+        padding: 10px;
+        border-radius: 25px;
+     }
     </style>
   </head>
   <body>
     <a href='Untitled-1.html'>
-    <div class="centered">
+    <div class="centered" id="kor">
         <h1>Köszönjük a foglalását!</h1>
         <p id="apro">(kattintással lépjen vissza a menübe)</p>
         
