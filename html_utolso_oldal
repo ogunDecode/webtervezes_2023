@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <title>Foglalás</title>
+    <meta charset="UTF-8"/>
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; }
+      body { background: linear-gradient(180deg, rgb(15, 255, 115), rgb(1, 34, 11)); font-family: 'Times New Roman', Times, serif; }
+      a { display: block; width: 100%; height: 100%; }
+      #apro{
+        size: 6 px;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
+        color: #fff;
+        font-style: italic;
+        font-size: small;
+      }
+      .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        margin: 0 auto;                     
+        text-align: center;                 
+        background-color: rgba(0, 0, 0, 0.33);
+        color: #fff;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <a href='Untitled-1.html'>
+    <div class="centered">
+        <h1>Köszönjük a foglalását!</h1>
+        <p id="apro">(kattintással lépjen vissza a menübe)</p>
+        
+    </div></a>
+  </body>
+</html>
