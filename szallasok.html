@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/urlap.css">
+
+    <style>
+        input, select, textarea, fieldset { margin-bottom: 20px; }
+
+        input[type="reset"], input[type="submit"] {
+            background-color: #af5b11;
+            color: rgb(219, 209, 209);
+            border: none;
+            outline: none;
+            font-size: 16px;
+            width: 150px;
+            height: 40px;
+        }
+
+        input:focus { background-color: #8d97c6; }
+    </style>
 </head>
 
 <body>
@@ -52,11 +68,11 @@
         <div class="container">
             <ul id="navbar-ul">
                 <li>
-                    <a id="active" class="nav-link" href="index.html">
+                    <a class="nav-link" href="index.html">
                         Főoldal</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="szallasok.html">
+                    <a id="active" class="nav-link" href="szallasok.html">
                         Szállások</a>
                 </li>
                 <li>
@@ -78,17 +94,9 @@
         </div>
     </nav>
 </header>
-
-<div class="kephely">
-    <div class="kep-item">
-        <div id="wallpap"></div>
-    </div>
-</div>
-
-<main id="fooldal">
+<main>
 
 </main>
-
 </body>
 
 </html>

@@ -1,0 +1,92 @@
+input, select, textarea, fieldset {
+    margin-bottom: 20px;
+}
+
+input[type="reset"], input[type="submit"] {
+    background-color: #af5b11;
+    color: rgb(219, 209, 209);
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 150px;
+    height: 40px;
+}
+
+input:focus {
+    background-color: #8d97c6;
+}
+
+input {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    overflow: visible;
+}
+
+input[type='text'], input[type='email'], input[type='password'], input[type='date'] {
+    display: inline-block;
+    width: 49%;
+    margin: 2px 0;
+}
+
+input[type='text'], input[type='email'], input[type='password'], input[type='date'] {
+    height: auto;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid gainsboro;
+    background: #fff;
+    padding: 5px;
+}
+
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    overflow: auto;
+    resize: vertical;
+}
+
+textarea {
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid gainsboro;
+    background: #fff;
+    padding: 5px;
+}
+
+#place, #night {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-transform: none;
+}
+
+#place, #night {
+    display: inline-block;
+    width: 49%;
+    margin: 2px 0;
+    height: auto;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid gainsboro;
+    background: #fff;
+    padding: 5px;
+}
+
+label {
+    max-width: 100%;
+    display: inline-block;
+    width: 49%;
+    margin: 2px 0;
+}
+
+
+

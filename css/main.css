@@ -13,29 +13,55 @@ body {
     background-color: #fff;
 }
 
-header, nav {
+#fejlec, nav {
     display: block;
 }
 
 main {
-    width: 100%;
-    padding-top: 150px;
-    padding-right: 15px;
-    padding-left: 15px;
+    position: absolute;
+    z-index: 0;
+    margin-top: 150px;
+    left: 0;
+    right: 0;
+    width: 80%;
+    margin-left: 10%;
     margin-right: auto;
-    margin-left: auto;
+    background-color: #fff;
+    box-shadow: 0 0 40px #57575757;
+    padding: 15px;
+    min-height: 500px;
 }
 
-input, select, textarea, fieldset { margin-bottom: 20px; }
-
-input[type="reset"], input[type="submit"] {
-    background-color: #af5b11;
-    color: rgb(219, 209, 209);
-    border: none;
-    outline: none;
-    font-size: 16px;
-    width: 150px;
-    height: 40px;
+#fooldal{
+    margin-top:-150px;
 }
 
-input:focus { background-color: #8d97c6; }
+.kep-item {
+    position: relative;
+    float: left;
+    min-height: 1px;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    width: 100%; margin-right: 10px;
+
+}
+.kephely:after {
+    display: block;
+    clear: both;
+    content: '.';
+    height: 850px;
+}
+
+#wallpap{
+    background-image:url('https://skytravel.hu/uploads/slide_offer/3812bd623685d4dc4047e8e0113768b7adde4cd1.jpg');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 840px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
