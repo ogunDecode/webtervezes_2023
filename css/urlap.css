@@ -7,10 +7,13 @@ input, select, textarea, fieldset {
     color: #f5f5f5 !important;
     border: none;
     outline: none;
-    font-size: 16px;
-    width: 150px;
+    font-size: 14px;
+    width: 160px;
     height: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
+
 
 input[type='reset'] {
     background-color: #FF6F59;
@@ -44,11 +47,7 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
     display: inline-block;
     width: 49%;
     margin: 2px 0;
-}
-
-input[type='text'], input[type='email'], input[type='password'], input[type='date'] {
     height: auto;
-    border-radius: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid gainsboro;
@@ -58,23 +57,19 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
 
 
 textarea {
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
     overflow: auto;
     resize: vertical;
-}
-
-textarea {
     width: 100%;
     margin: 10px 0;
-    border-radius: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid gainsboro;
     background: #fff;
     padding: 5px;
+    border-radius: .25rem;
 }
 
 #place, #night {
@@ -83,6 +78,7 @@ textarea {
     font-size: inherit;
     line-height: inherit;
     text-transform: none;
+    border-radius: .25rem;
 }
 
 #place, #night {
@@ -111,7 +107,10 @@ fieldset, #masodl, .radio-group {
     vertical-align: top;
     box-sizing: border-box;
 }
-
+fieldset{
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
 .radio-group {
     width: 24%;
 }
