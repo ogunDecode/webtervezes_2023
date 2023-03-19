@@ -88,8 +88,8 @@ body {
     flex-direction: column;
 }
 
-#dubai, #dubai_zoom {
-    background-image: url(../img/dubai.jpg);
+#olasz, #olasz_zoom {
+    background-image: url(../img/olasz.jpg);
 }
 
 #horvat, #horvat_zoom {
@@ -97,16 +97,16 @@ body {
     background-image: url(../img/horvath.jpg);
 }
 
-#ausztria, #ausztria_zoom {
-    background-image: url(../img/ausztria.jpg);
+#anglia, #anglia_zoom {
+    background-image: url(../img/anglia.jpg);
 }
 
 #nyc, #nyc_zoom {
     background-image: url(../img/nyc.jpg);
 }
 
-#orosz, #orosz_zoom {
-    background-image: url(../img/orosz.jpg);
+#francia, #francia_zoom {
+    background-image: url(../img/francia.jpg);
 }
 
 .overlay {
