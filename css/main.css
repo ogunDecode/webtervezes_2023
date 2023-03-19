@@ -450,6 +450,9 @@ footer small {
         page-break-after: always !important;
         page-break-inside: avoid !important;
     }
+    table:last-child {
+        page-break-after: avoid !important;
+    }
     .tabble img {
         width: 100% !important;
         margin: 0 !important;
