@@ -139,6 +139,12 @@ header {
     }
 }
 
+@media only screen and (max-width: 1097px) and (min-width: 739px){
+    #fejlec ul {
+        margin-top: -7px;
+    }
+}
+
 @media only screen and (max-width: 1040px) {
     #anglia {
         top: 240px;
@@ -224,12 +230,20 @@ header {
         width: 96%;
         margin-left: 2%;
     }
+
+    .nav-link {
+        padding: 9px 11px;
+    }
+
+    .nav-link a {
+        padding: 0;
+    }
 }
 
 @media only screen and (max-width: 400px) {
     #logox {
-        height: 50px;
-        width: 50px;
+        height: 70px;
+        width: 70px;
     }
 
     h1 {
@@ -241,7 +255,7 @@ header {
     }
 
     .nav-link {
-        padding: 9px 15px;
+        padding: 9px 7px;
     }
 
     #navbar .container {
@@ -256,4 +270,5 @@ header {
     #fobub {
         height: 770px;
     }
+
 }
