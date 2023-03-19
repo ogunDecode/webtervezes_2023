@@ -48,7 +48,6 @@ input[type='text'], input[type='email'], input[type='password'], input[type='dat
     width: 49%;
     margin: 2px 0;
     height: auto;
-    -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid gainsboro;
     background: #fff;
@@ -64,7 +63,6 @@ textarea {
     resize: vertical;
     width: 100%;
     margin: 10px 0;
-    -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid gainsboro;
     background: #fff;
@@ -87,7 +85,6 @@ textarea {
     margin: 2px 0;
     height: auto;
     border-radius: 0;
-    -webkit-box-shadow: none;
     box-shadow: none;
     border: 1px solid gainsboro;
     background: #fff;

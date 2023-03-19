@@ -48,7 +48,6 @@ header {
 
 #navbar {
     flex-flow: row nowrap;
-    -ms-flex-pack: start;
     justify-content: flex-start;
     background: #04bd50;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
@@ -89,14 +88,12 @@ header {
 }
 
 .col-2 {
-    -ms-flex: 0 0 16.666667%;
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
     text-align: left !important;
 }
 
 .col-10 {
-    -ms-flex: 0 0 83.333333%;
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
 }
