@@ -416,15 +416,50 @@ footer small {
 }
 
 @media print {
+    .tartalom {
+        display: block;
+        width: auto;
+    }
+
+    h2 {
+        display: block;
+        font-size: 1.17em;
+        font-weight: bold;
+        margin: 0;
+        color: #000000;
+        text-shadow: none;
+    }
+
     body {
         color: black !important;
         background-color: white !important;
     }
-    main, #navutan{
+
+    .hover {
+        height: auto;
+    }
+
+    #horvat {
+        margin-top: 0 !important;
+    }
+
+    main, .bubbles {
         top: auto !important;
         width: 100% !important;
         margin-left: 0 !important;
         box-shadow: none !important;
+    }
+
+    #anglia {
+        margin-bottom: 0;
+    }
+
+    #navutan {
+        position: relative;
+    }
+
+    #wallpap {
+        visibility: hidden;
     }
 
     .name, .offerlistprice {
@@ -446,17 +481,28 @@ footer small {
         margin: 11.25pt 0 22.5pt 0 !important;
         box-shadow: none !important;
     }
+
+    div {
+        background-image: none !important;
+    }
+
+    .overlay {
+        visibility: hidden;
+    }
+
     table {
         page-break-after: always !important;
         page-break-inside: avoid !important;
     }
+
     table:last-child {
         page-break-after: avoid !important;
     }
+
     .tabble img {
         width: 100% !important;
         margin: 0 !important;
-        box-shadow: none  !important;
+        box-shadow: none !important;
     }
 
     .tabble td {
@@ -467,7 +513,27 @@ footer small {
     caption h3 {
         font-size: 22.5pt !important;
     }
-    footer, header{
+
+    footer, header {
         visibility: hidden !important;
+    }
+
+    #fobub {
+        height: auto;
+        margin-top: auto;
+        position: static;
+    }
+
+    .wrapwallpap:after {
+        content: none;
+        height: auto;
+    }
+
+    iframe {
+        display: none;
+    }
+
+    .video {
+        color: black;
     }
 }
