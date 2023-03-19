@@ -1,6 +1,5 @@
 .container {
     padding-right: 15px;
-    padding-left: 15px;
     margin-left: 10%;
     max-width: 1370px;
 }
@@ -118,6 +117,66 @@ header {
     display: inline-block !important;
     text-align: left !important;
     margin-right: .5rem !important;
+}
+
+@media only screen and (max-width: 840px) {
+    h1 {
+        font-size: 38px;
+    }
+
+    .short_contact_list {
+        margin-top: -2px;
+    }
+
+    .short_contact_list ul li a {
+        font-size: 10px;
+        margin-right: 0;
+    }
+
+    #anglia {
+        top: 740px;
+        margin-bottom: 760px;
+    }
+
+    #fobub {
+        height: 810px;
+    }
+
+    .content iframe {
+        height: 380px;
+    }
+
+    .container {
+        margin-left: 0;
+    }
+
+    .col-10 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .overlay a, #kepgomb {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+    .bubbles {
+        width: 96%;
+        margin-left: 2%;
+    }
+}
+
+@media only screen and (max-width: 678px) {
+    #logox {
+        height: 50px;
+        width: 50px;
+    }
 }
 
 #text-right {
