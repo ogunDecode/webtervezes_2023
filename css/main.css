@@ -276,3 +276,195 @@ footer small {
 #kepgomb:hover {
     background-color: #04E762;
 }
+
+
+@media only screen and (max-width: 1300px) {
+    #anglia {
+        top: 190px;
+        margin-bottom: 210px;
+    }
+
+    #fobub {
+        height: 280px;
+    }
+
+    h1 {
+        font-size: 70px;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    #anglia {
+        top: 240px;
+        margin-bottom: 260px;
+    }
+
+    #fobub {
+        height: 330px;
+    }
+}
+
+@media only screen and (max-width: 930px) {
+    #anglia {
+        top: 300px;
+        margin-bottom: 320px;
+    }
+
+    #fobub {
+        height: 380px;
+    }
+}
+
+
+@media only screen and (max-width: 830px) {
+    #anglia {
+        top: 340px;
+        margin-bottom: 360px;
+    }
+
+    #fobub {
+        height: 430px;
+    }
+}
+
+
+@media only screen and (max-width: 640px) {
+    h1 {
+        font-size: 38px;
+    }
+
+    .short_contact_list {
+        margin-top: -2px;
+    }
+
+    .short_contact_list ul li a {
+        font-size: 12px;
+        margin-right: 0;
+    }
+
+    #anglia {
+        top: 590px;
+        margin-bottom: 610px;
+    }
+
+    #fobub {
+        height: 670px;
+    }
+
+    .content iframe {
+        height: 380px;
+    }
+
+    .container {
+        margin-left: 0;
+    }
+
+    .col-10 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .overlay a, #kepgomb {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .bubbles {
+        width: 96%;
+        margin-left: 2%;
+    }
+}
+
+
+@media only screen and (max-width: 400px) {
+    #logox {
+        height: 50px;
+        width: 50px;
+    }
+
+    h1 {
+        font-size: 33px;
+    }
+
+    .overlay a, #kepgomb {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        padding: 9px 15px;
+    }
+
+    #navbar .container {
+        padding-right: 0;
+    }
+
+    #anglia {
+        top: 690px;
+        margin-bottom: 710px;
+    }
+
+    #fobub {
+        height: 770px;
+    }
+}
+
+@media print {
+    body {
+        color: black !important;
+        background-color: white !important;
+    }
+    main, #navutan{
+        top: auto !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .name, .offerlistprice {
+        padding-left: 11.25pt !important;
+    }
+
+    .offerlistprice {
+        padding-bottom: 11.25pt !important;
+        color: black !important;
+    }
+
+    .tabble, .tabble th, .tabble td {
+        margin: 7.5pt !important;
+        border: 2pt solid black !important;
+    }
+
+    .tabble {
+        border-radius: 3pt !important;
+        margin: 11.25pt 0 22.5pt 0 !important;
+        box-shadow: none !important;
+    }
+    table {
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+    }
+    .tabble img {
+        width: 100% !important;
+        margin: 0 !important;
+        box-shadow: none  !important;
+    }
+
+    .tabble td {
+        padding: 11.25pt !important;
+        width: 52.5pt !important;
+    }
+
+    caption h3 {
+        font-size: 22.5pt !important;
+    }
+    footer, header{
+        visibility: hidden !important;
+    }
+}
