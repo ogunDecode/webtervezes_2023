@@ -172,7 +172,7 @@ header {
     }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 736px) {
     h1 {
         font-size: 38px;
     }
