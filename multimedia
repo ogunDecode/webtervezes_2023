@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Kisfilmjeink</title>
+<style>
+	.content{
+		background-color: aliceblue;
+		height: 90%;
+		text-align: center;
+	}
+	
+
+
+	@keyframes hatterszin {           /* hattér szine változik ez a többiben is használhatnánk */
+  0% { background-color: rgb(224, 255, 255); }
+  25% { background-color:rgb(76, 153, 139); }
+  50% { background-color: rgb(14, 112, 102); }
+  75% { background-color: rgb(90, 130, 187); }
+  100% { background-color: rgb(57, 17, 158); }
+}
+
+
+.video{
+		border-radius: 20%;
+		color: blueviolet;
+		font-size: large;
+		font-weight: 300;
+		text-align: center;
+	}
+body {
+  animation-name: hatterszin;   
+  animation-duration: 20s;                
+  animation-timing-function: linear;      
+  animation-iteration-count: infinite;    
+  animation-direction: reverse;         
+}
+
+</style>
+</head>
+
+<body>
+<header class="header">
+	<h1 class="title" >Városokat bemutató kisfilmjeink, azon látogatoknakakik nem ismerik az adott város nevezetességeit és történetét</h1>
+</header>
+
+
+<div class="content" >
+
+<p><strong>Tisztelt Látogatok, kedves Vendégek és érdeklődök!</strong></p>
+<p class="text">Azoknak az igényére akik nem ismertek az adott városok nevezetességevel és javaslatokat keresnek azoknak összeálitottunk egy rövid 
+összefoglalot a redszerünkben szereplő szállodákat körülvevő városok nevezetességeiről(ezt bövebben egy angol videoban is megtekinthetik) valamint rövid történetéről</p>
+
+<div class="video">
+<p>London bemutatása </p>
+<iframe width="450" height="400"
+src="https://www.youtube.com/watch?v=45ETZ1xvHS0" >
+</iframe></div>
+ <p>London az Egyesült Királyság és azon belül Anglia fővárosa, a legnagyobb városi terület az Egyesült Királyságban; Európában Isztambul
+	 és Moszkva után a legnépesebb város. A Londoni-medencében, a Temze folyó két partján terül el. A története egészen az alapító rómaiakig nyúlik vissza,
+	  akik a várost Londiniumnak nevezték. A középkor emlékeit a város központjában található City of London őrzi, a mai London e köré épült ki.
+</p>
+
+<div class="video">
+<p>New york bemutatása </p>
+<iframe width="450" height="400"
+src="https://www.youtube.com/watch?v=-M0RiKff3Ds" >
+</iframe></div>
+<p>New York az Amerikai Egyesült Államok New York államában fekvő város. Az ország legnépesebb, Amerika szuperkontinens harmadik legnépesebb
+ települése, központja a New York-i agglomerációnak, amely a szuperkontinens legnagyobb várostömörülése, a világon pedig a nyolcadik. A Föld egyik vezető 
+ világvárosa, az Egyesült Államok első számú üzleti, kereskedelmi, egészségügyi, oktatási központja, egyik első számú kutatási-fejlesztési, technológiai, 
+ média- és szórakoztatóipari csomópontja, turizmusának elsődleges célpontja. Itt található az ENSZ és több, világszinten is jelentős multinacionális vállalat 
+ székhelye, valamint a világ egyik legnagyobb tőzsdéje, ezért a Föld legjelentősebb gazdasági-politikai centrumai közé tartozik.</p>
+
+<div class="video">
+	<p>Róma bemutatása </p>
+	<iframe width="450" height="400"
+	src="https://www.youtube.com/watch?v=DEJx0CYrDHk" >
+	</iframe></div>
+<p>Róma (olaszul és latinul: Roma) Olaszország fővárosa, Lazio régió központja, a hajdani Római Birodalom központja.
+ Az ország legnagyobb és legnépesebb városa 1285,3 km²-en mintegy 2,8 millió lakossal, az Európai Unió harmadik legnépesebb városa.
+  Területébe ékelve található a Vatikán, a római katolikus egyház központja, a pápa székhelye, a világ legkisebb független állama. Nagy kiterjedésű
+   történelmi központja az UNESCO Világörökség része. Múzeumai és műemlékei, mint pl. a Vatikán múzeumai és a Colosseum a világ 50 leglátogatottabb turisztikai 
+   célpontjai között vannak.
+
+Róma története 28 évszázadot ölel fel. Míg a római mitológia Kr.e. 753 körül datálta Róma alapítását, a hely sokkal régebb ideje lakott volt,
+ így csaknem három évezred óta jelentős település, és Európa egyik legrégebbi, folyamatosan lakott városa. A város korai lakossága latinok,
+  etruszkok és szabinok keverékéből származott. Végül a város a Római Királyság, a Római Köztársaság, majd a Római Birodalom fővárosává vált,
+   melyet sokan a legelső metropolisznak tekintenek. Tibullus római költő hívta először az Örök városnak (latinul: Urbs Aeterna; olaszul: La Città Eterna)
+	a Kr.e. 1. században, és ezt a kifejezést Ovidius, Vergilius és Livius is átvette. Emellett Rómát "Caput Mundi" -nak (a világ fővárosa) is nevezik.
+	 A birodalom nyugati bukása után, (amely a középkor kezdetét jelentette) Róma lassan a pápaság politikai irányítása alá került, és a 8. században 
+	 a Pápai állam fővárosává vált, mely 1870-ig tartott. A reneszánsztól kezdve V. Miklós óta szinte minden pápa négyszáz éven keresztül koherens építészeti
+	  és városi programot folytatott, amelynek célja volt, hogy a várost a világ művészeti és kulturális központjává tegye. Ily módon Róma először 
+	  a reneszánsz egyik fő központja lett, majd a barokk stílus és a neoklasszicizmus szülőhelyévé vált. Híres művészek, festők, szobrászok és építészek 
+	  tették Rómát tevékenységük középpontjává, remekműveket alkotva az egész városban. 1871-ben Róma az Olasz Királyság fővárosa lett, 1946-óta 
+	  pedig az Olasz Köztársaság fővárosa.
+</p>
+<div class="video">	
+	<p>Párizs bemutatása </p>
+	<iframe width="450" height="400"
+	src="https://www.youtube.com/watch?v=AQ6GmpMu5L8">
+	</iframe></div>
+<p>Párizs (franciául: Paris, latinul: Lutetia, vagy a későbbi neolatin Lutetia Parisiorum) Franciaország fővárosa. 
+Az ország északi részén, a Szajna folyó partján terül el, az Île-de-France régió (vagy Région Parisienne) szívében. Párizs Európa egyik legnépesebb városa.
+ Becsült népessége elővárosait nem számítva 2006 januárjában 2 167 944 fő volt, ám agglomerációival a Párizsi „unité urbaine” (városi terület) populációja 
+ 2005-ben több volt mint 9 millió fő, míg a Párizs „aire urbaine” (fővárosi terület) 12 millió lakost számlált.
+
+A két évezreden keresztül fontos szerepet játszó Párizs ma is a világ egyik vezető gazdasági és kulturális központja, befolyása a politikára, az oktatásra,
+ a szórakoztatóiparra, a sajtóra, a divatra, a tudományra és a művészetekre a világ négy legjelentősebb városa közé emelte. A Région Parisienne Franciaország 
+ legfejlettebb területe, gazdaságának központja: 2006-ban 500,8 milliárd euróval a francia bruttó hazai termék egynegyedét adta. A világ 500 legjelentősebb 
+ vállalatából 38 székel Párizs számos üzleti negyedének egyikében. Jelentős nemzetközi szervezetek, mint az UNESCO, az OECD, az ESA és az ICC is párizsi központú.
+</p>
+<div class="video">
+<p>Zagreb bemutatása (dron felvétel)</p>
+<iframe width="450" height="400"
+src="https://www.youtube.com/watch?v=PRyScU9i7KU"></iframe></div>
+<p>Zágráb (horvátul: Zagreb, németül: Agram, latinul és olaszul: Zagabria, régi magyar nevén: Gréc) Horvátország fővárosa és legnagyobb városa,
+ a Zágrábi főegyházmegye székhelye, Budapest és Belgrád után pedig a Kárpát-medence harmadik legnagyobb városa. Az ország északnyugati részén,
+  a Száva-folyó mentén, a Medvednica-hegy déli lejtőin fekszik, körülbelül 122 m tengerszint feletti magasságban. A város becsült lakosságszáma 2018-ban
+   804 507 fő volt, a városi agglomeráció lakossága pedig 1 153 255 fő, azaz Horvátország teljes népességének körülbelül egynegyede.
+
+Zágráb gazdag római kori történelemmel rendelkezik. A város környékének legrégebbi települése a római Andautónia volt, a mai Ščitarjevóban. 
+A "Zágráb" név első írásos említése 1134-ből származik, Kaptol település (ma Zágráb városrésze) 1094-es megalapításával összefüggésben.
+ 1242-ben szabad királyi város lett. 1851-ben volt Zágrábnak először polgármestere, Janko Kamauf.
+</p>
+</div>
+</body>
+</html>
