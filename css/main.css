@@ -5,9 +5,11 @@
 main p {
     margin-top: 0;
 }
-#fobub p{
+
+#fobub p {
     font-size: 18px;
 }
+
 h1 {
     font-size: 80px;
     line-height: 30px;
@@ -35,10 +37,35 @@ h3 {
     font-size: 40px;
 }
 
+@keyframes hatterszin {
+    0% {
+        background-color: #acd5be;
+    }
+    25% {
+        background-color: #bde0c4;
+    }
+    50% {
+        background-color: #ead6e5;
+    }
+    75% {
+        background-color: #ecd6d3;
+    }
+    100% {
+        background-color: #efe5d5;
+    }
+}
+
+body {
+}
+
 body {
     margin: 0;
     font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: #fff;
+    animation-name: hatterszin;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
 }
 
 .bubbles {
@@ -219,7 +246,8 @@ footer small {
     font-weight: 600;
     border-radius: 4px;
 }
-.vgomb{
+
+.vgomb {
     background-color: #04bd50;
     color: #f5f5f5 !important;
     padding: 1rem 23px !important;
