@@ -129,7 +129,7 @@ function nemet_konvertal($betujel)
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles">
+    <div id="navutan" class="bubbles" style="width: 60%; margin-left: 20%">
         <h3>Profilom</h3>
         <hr/>
 
@@ -147,9 +147,9 @@ function nemet_konvertal($betujel)
             }
         }
         ?>
+
         <?php
         // a profilkép módosítását elvégző PHP kód
-
         if (isset($_POST["upload-btn"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {  // ha töltöttek fel fájlt...
             $fajlfeltoltes_hiba = "";                                       // változó a fájlfeltöltés során adódó esetleges hibaüzenet tárolására
             uploadProfilePicture($_SESSION["user"]["felhasznalonev"]);      // a kozos.php-ban definiált profilkép feltöltést végző függvény meghívása
@@ -169,9 +169,8 @@ function nemet_konvertal($betujel)
                 echo "<p>" . $fajlfeltoltes_hiba . "</p>";
             }
         }
-
-
         ?>
+
         <?php
         // load the users into a 2-dimensional array
         $fiokok = loadUsers("users.txt");
@@ -237,7 +236,7 @@ function nemet_konvertal($betujel)
         </form>
     </div>
 </main>
-<footer>
+<footer id="long">
     <div>
         <p>
             <small>Copyright © 2023 Sóki Krisztián és Ogunde Edwin. Minden jog fenntartva. | Design: Webterv Gy.</small>

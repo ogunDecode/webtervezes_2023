@@ -32,6 +32,17 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 
         .bubbles {
             min-height: 370px;
+            padding-bottom: 0px;
+            overflow: auto;
+            width: 60%;
+            margin-left: 20%;
+        }
+        #adatok{
+            overflow: auto;
+        }
+        .bubbles img{
+            float: left;
+            margin-right: 20px;;
         }
     </style>
 </head>
@@ -132,8 +143,9 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 
         $div_id = ($key === 0) ? "navutan" : "";
         echo "<div id='$div_id' class='bubbles'>";
-        echo "<h3>#" . $length . " foglalás</h3>";
+        echo "<h3>#" . $length . " foglalás</h3><hr>";
         echo "<img src=" . $profilkep . " alt='Profilkép' height='200'/>";
+        echo "<div id='adatok'>";
         echo "<p>Vendég neve: ";
         if ($foglalas["sex"] == "m") {
             echo "Mr. ";
@@ -171,6 +183,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
         }
         echo "</p>";
         echo "<p>Megjegyzés: " . (!empty($foglalas["introd"]) ? $foglalas["introd"] : "-") . "</p>";
+        echo "</div>";
         echo "</div>";
     }
     ?>
