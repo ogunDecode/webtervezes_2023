@@ -3,12 +3,11 @@ session_start();
 include "kozos.php";
 // süti
 $see = 1;
-
 if (isset($_COOKIE["visits"])) {
-    $see = $_COOKIE["visits"] + 1;
+    $latogatasok = $_COOKIE["visits"] + 1;
 }
-setcookie("visits", $see, time() + (60*60*24*30), "/");
-echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $see. látogatásod.</p>";
+setcookie("visits", $see, time() + (60*60*24*10), "/");
+echo "Üdvözöllek ismét! Ez a(z) $see. látogatásod.";
 
 
 
@@ -130,7 +129,7 @@ function nemet_konvertal($betujel)
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles" style="width: 60%; margin-left: 20%">
+    <div id="navutan" class="bubbles">
         <h3>Profilom</h3>
         <hr/>
 
@@ -148,9 +147,9 @@ function nemet_konvertal($betujel)
             }
         }
         ?>
-
         <?php
         // a profilkép módosítását elvégző PHP kód
+
         if (isset($_POST["upload-btn"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {  // ha töltöttek fel fájlt...
             $fajlfeltoltes_hiba = "";                                       // változó a fájlfeltöltés során adódó esetleges hibaüzenet tárolására
             uploadProfilePicture($_SESSION["user"]["felhasznalonev"]);      // a kozos.php-ban definiált profilkép feltöltést végző függvény meghívása
@@ -170,8 +169,9 @@ function nemet_konvertal($betujel)
                 echo "<p>" . $fajlfeltoltes_hiba . "</p>";
             }
         }
-        ?>
 
+
+        ?>
         <?php
         // load the users into a 2-dimensional array
         $fiokok = loadUsers("users.txt");
@@ -235,9 +235,98 @@ function nemet_konvertal($betujel)
             <input type="password" id="password" name="password">
             <button class="fgomb" type="submit" name="delete" value="1">Felhasználó törlése</button>
         </form>
+          <p>A szállodai foglalásokon kívül oldalunk lehetőséget add a fopglalóink megismerésére, ezzel a szolgáltatási fungcioval akarjuk biztositani
+            hogy nem csak egy kivételés utazási élményt biztositunk de lehetőséget adunk hosszutávú ismeretséget kialakitására.
+          </p>
+          <p>
+            (Sajnálatal közöljük hogy zaklatási panaszok véget ez a szolgáltatás az admin kivételével csak az azonos nemmel rendelkező felhasználokkal működik)
+          </p>
+
+
+          
+    <?php    //innentol csináltam -------------------------------
+       if (isset($_POST["elkuld"])) {
+        if (!isset($_SESSION['user']) && isset($_SESSION['user'])=="admin") {
+            
+            
+        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
+        $beirt_szoveg = $_POST["szoveg"];  
+        } else {
+            if(!isset($_POST['user'])=="admin"){
+                $id=$_POST['idelete'];}
+            exit();
+        }header('Location: profile.php');
+       }
+    ?>
+    <?php
+       if (isset($_POST["elkuld"])) {
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="nő") {
+            
+            
+        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
+        $beirt_szoveg = $_POST["szoveg"];  
+        } else {
+            if(!isset($_POST['betujel'])=="nő"){
+                $id=$_POST['idelete'];}
+            exit();
+        }header('Location: profile.php');
+       }
+    ?>
+    <?php
+       if (isset($_POST["elkuld"])) {
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="férfi") {
+            
+            
+        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
+        $beirt_szoveg = $_POST["szoveg"];  
+        } else {
+            if(!isset($_POST['betujel'])=="férfi"){
+                $id=$_POST['idelete'];}
+            exit();
+        }header('Location: profile.php');
+       }
+    ?>
+        <?php
+       if (isset($_POST["elkuld"])) {
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="egyéb") {
+            
+            
+        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
+        $beirt_szoveg = $_POST["szoveg"];  
+        } else {
+            if(!isset($_POST['betujel'])=="egyéb"){
+                $id=$_POST['idelete'];}
+            exit();
+        }header('Location: profile.php');
+       }
+    ?>
+        <form action="profile.php" method="POST" id="idelete">
+        <?php
+        if (!isset($_SESSION['user']) && isset($_SESSION['user'])=="admin") 
+        else{ $id=$_POST['admindelete'];}?>
+        <p $id="admindelete">Adminként bárkinek küldhet üzenetett.</br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
+        <?php
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="férfi")  
+        else{ $id=$_POST['ferdelete'];}?>
+        <p $id="ferdelete">Férfiként csak férfiaknak küldhet üzenetett </br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
+        <?php
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="nő")  
+        else{ $id=$_POST['nodelete'];}?>
+        <p $id="nodelete">Nőként csak nőknek küldhet üzenetett</br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p>
+        <?php 
+        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="egyéb")  
+        else{ $id=$_POST['egydelete'];}?>
+        <p $id="egydelete">Egyébként csak egyébeknek küldhet üzenetett </br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
+        <input type="text" name="szoveg"/>
+        <input type="submit" name="elkuld"/> <br/>
+        </form>
+        <?php echo "<p>" . $uzenet . "</p>";
+        
+        //eddig csináltam
+        ?>
     </div>
 </main>
-<footer id="long">
+<footer>
     <div>
         <p>
             <small>Copyright © 2023 Sóki Krisztián és Ogunde Edwin. Minden jog fenntartva. | Design: Webterv Gy.</small>
