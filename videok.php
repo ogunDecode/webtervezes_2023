@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) {
+    header('Location: index.php');
+    exit();
+}
 ?>
 
 <!doctype html>
@@ -83,24 +87,28 @@ session_start();
                     <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
+                <?php if ($_SESSION["user"]["perm"] !== 1) { ?>
                 <li>
                     <a id="active" class="nav-link" href="videok.php">
                         Videók</a>
                 </li>
+                <?php } ?>
                 <li>
                     <a class="nav-link" href="kapcsolat.php">
                         Kapcsolat</a>
                 </li>
-                <?php if (isset($_SESSION["user"])) { ?>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 0) { ?>
                     <li>
                         <a class="nav-link" href="foglalas.php">
                             Foglalás</a>
                     </li>
                 <?php } ?>
+                <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
                 <li>
                     <a class="nav-link" href="foglalasok.php">
                         Foglalások</a>
                 </li>
+                <?php } ?>
                 <div style="margin-left: auto; display: flex">
                 <?php if (isset($_SESSION["user"])) { ?>
                     <li><a class="nav-link" href="profile.php">Profilom</a></li>
