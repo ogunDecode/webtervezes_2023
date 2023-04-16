@@ -121,7 +121,7 @@ if (isset($_POST["login"])) {
         <form action="login.php" method="POST">
             <label>Felhasználónév: <input type="text" name="felhasznalonev"/></label> <br/>
             <label>Jelszó: <input type="password" name="jelszo"/></label> <br/>
-            <input type="submit" name="login"/> <br/><br/>
+            <input class="fgomb" type="submit" name="login"/> <br/><br/>
         </form>
         <?php echo $uzenet . "<br/>"; ?>
     </div>

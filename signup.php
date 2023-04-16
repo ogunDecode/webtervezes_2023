@@ -179,7 +179,7 @@ if (isset($_POST["regiszt"])) {
             <label><input type="checkbox" name="hobbik[]" value="alvás" <?php if (isset($_POST['hobbik']) && in_array('alvás', $_POST['hobbik'])) echo 'checked'; ?>/> Alvás</label> <br/>
             <!-- Fájlfeltöltés űrlapmező -->
             <label>Profilkép: <input type="file" name="profile-pic" accept="image/*"/></label> <br/>
-            <input type="submit" name="regiszt"/> <br/><br/>
+            <input class="fgomb" type="submit" name="regiszt"/> <br/><br/>
         </form>
 
         <?php
