@@ -1,0 +1,2 @@
+a:5:{s:14:"felhasznalonev";s:5:"Edwin";s:6:"jelszo";s:60:"$2y$10$QEBV4YsOtUePPr2BoPo9hu.mBx9QubIwjcHP91Rh.e8RuwRlV728K";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:6:"hobbik";a:3:{i:0;s:12:"programozás";i:1;s:15:"mémnézegetés";i:2;s:6:"alvás";}}
+a:5:{s:14:"felhasznalonev";s:6:"Attila";s:6:"jelszo";s:60:"$2y$10$LXp51ws0mzvWfCFv4x2Kp.sUET8Dd6Uucp1uxkbNDD4w7tWm/1pgq";s:7:"eletkor";s:2:"22";s:3:"nem";s:1:"F";s:6:"hobbik";a:3:{i:0;s:7:"főzés";i:1;s:11:"macskázás";i:2;s:15:"mémnézegetés";}}

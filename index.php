@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!doctype html>
 <html lang="hu">
 
@@ -20,7 +25,7 @@
         <div class="header-area">
             <div class="container" id="row">
                 <div class="col-2">
-                    <a id="navbar-brand" href="index.html"><!-- Logo Image -->
+                    <a id="navbar-brand" href="index.php"><!-- Logo Image -->
                         <img alt="" id="logox" src="img/logo.png">
                     </a>
                 </div>
@@ -52,25 +57,44 @@
         <div class="container">
             <ul id="navbar-ul">
                 <li>
-                    <a id="active" class="nav-link" href="index.html">
+                    <a id="active" class="nav-link" href="index.php">
                         Főoldal</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="szallasok.html">
+                    <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="videok.html">
+                    <a class="nav-link" href="videok.php">
                         Videók</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="kapcsolat.html">
+                    <a class="nav-link" href="kapcsolat.php">
                         Kapcsolat</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="foglalas.html">
-                        Foglalás</a>
-                </li>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li>
+                        <a class="nav-link" href="foglalas.php">
+                            Foglalás</a>
+                    </li>
+                <?php } ?>
+                <div style="margin-left: auto; display: flex">
+                    <?php if (isset($_SESSION["user"])) { ?>
+                        <li>
+                            <a class="nav-link" href="profile.php">Profilom</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                        </li>
+                    <?php } else { ?>
+                        <li>
+                            <a class="nav-link" href="login.php">Bejelentkezés</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="signup.php">Regisztráció</a>
+                        </li>
+                    <?php } ?>
+                </div>
             </ul>
         </div>
     </nav>
@@ -79,7 +103,7 @@
 <div class="wrapwallpap">
     <div id="wallpap">
         <h1>Egzotikus nyaralások</h1>
-        <a id="kepgomb" href="foglalas.html"><span>Foglaljon most!</span></a>
+        <a id="kepgomb" href="foglalas.php"><span>Foglaljon most!</span></a>
     </div>
 </div>
 <main>
@@ -100,8 +124,8 @@
     <div id="anglia" class="bubbles hover">
         <div id="anglia_zoom" class="back_img"></div>
         <div class="overlay">
-            <a class="vgomb" href="szallasok.html#UK"><span>Szállások</span></a>
-            <a class="vgomb" href="videok.html#UK"><span>Videók</span></a>
+            <a class="vgomb" href="szallasok.php#UK"><span>Szállások</span></a>
+            <a class="vgomb" href="videok.php#UK"><span>Videók</span></a>
         </div>
         <div class="tartalom">
             <h2>Anglia</h2>
@@ -110,8 +134,8 @@
     <div id="horvat" class="bubbles hover" style="margin-top: 120px">
         <div id="horvat_zoom" class="back_img"></div>
         <div class="overlay">
-            <a class="vgomb" href="szallasok.html#HORVAT"><span>Szállások</span></a>
-            <a class="vgomb" href="videok.html#HORVAT"><span>Videók</span></a>
+            <a class="vgomb" href="szallasok.php#HORVAT"><span>Szállások</span></a>
+            <a class="vgomb" href="videok.php#HORVAT"><span>Videók</span></a>
         </div>
         <div class="tartalom">
             <h2>Horváthország</h2>
@@ -120,8 +144,8 @@
     <div id="olasz" class="bubbles hover">
         <div id="olasz_zoom" class="back_img"></div>
         <div class="overlay">
-            <a class="vgomb" href="szallasok.html#OLASZ"><span>Szállások</span></a>
-            <a class="vgomb" href="videok.html#OLASZ"><span>Videók</span></a>
+            <a class="vgomb" href="szallasok.php#OLASZ"><span>Szállások</span></a>
+            <a class="vgomb" href="videok.php#OLASZ"><span>Videók</span></a>
         </div>
         <div class="tartalom">
             <h2>Olaszország</h2>
@@ -130,8 +154,8 @@
     <div id="nyc" class="bubbles hover">
         <div id="nyc_zoom" class="back_img"></div>
         <div class="overlay">
-            <a class="vgomb" href="szallasok.html#NY"><span>Szállások</span></a>
-            <a class="vgomb" href="videok.html#NY"><span>Videók</span></a>
+            <a class="vgomb" href="szallasok.php#NY"><span>Szállások</span></a>
+            <a class="vgomb" href="videok.php#NY"><span>Videók</span></a>
         </div>
         <div class="tartalom">
             <h2>New York</h2>
@@ -140,8 +164,8 @@
     <div id="francia" class="bubbles hover">
         <div id="francia_zoom" class="back_img"></div>
         <div class="overlay">
-            <a class="vgomb" href="szallasok.html#FRANCIA"><span>Szállások</span></a>
-            <a class="vgomb" href="videok.html#FRANCIA"><span>Videók</span></a>
+            <a class="vgomb" href="szallasok.php#FRANCIA"><span>Szállások</span></a>
+            <a class="vgomb" href="videok.php#FRANCIA"><span>Videók</span></a>
         </div>
         <div class="tartalom">
             <h2>Franciaország</h2>

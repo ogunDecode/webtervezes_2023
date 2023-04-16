@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="hu">
 
@@ -90,7 +94,7 @@
         <div class="header-area">
             <div class="container" id="row">
                 <div class="col-2">
-                    <a id="navbar-brand" href="index.html"><!-- Logo Image -->
+                    <a id="navbar-brand" href="index.php"><!-- Logo Image -->
                         <img alt="" id="logox" src="img/logo.png">
                     </a>
                 </div>
@@ -122,25 +126,36 @@
         <div class="container">
             <ul id="navbar-ul">
                 <li>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="index.php">
                         Főoldal</a>
                 </li>
                 <li>
-                    <a id="active" class="nav-link" href="szallasok.html">
+                    <a id="active" class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="videok.html">
+                    <a class="nav-link" href="videok.php">
                         Videók</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="kapcsolat.html">
+                    <a class="nav-link" href="kapcsolat.php">
                         Kapcsolat</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="foglalas.html">
-                        Foglalás</a>
-                </li>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li>
+                        <a class="nav-link" href="foglalas.php">
+                            Foglalás</a>
+                    </li>
+                <?php } ?>
+                <div style="margin-left: auto; display: flex">
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li><a class="nav-link" href="profile.php">Profilom</a></li>
+                    <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+                <?php } else { ?>
+                    <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
+                    <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
+                <?php } ?>
+                </div>
             </ul>
         </div>
     </nav>
@@ -154,7 +169,7 @@
                 kínálatunkban,
                 legyen szó hosszú hétvégéről vagy akár egy hosszabb utazásról!</p>
             <div class="editor_line" id="advanced_line">
-                <a id="OLASZ" href='foglalas.html'>
+                <a id="OLASZ" href='foglalas.php'>
                     <table class="tabble">
                         <caption><h3 class="country">Olaszország-Róma</h3></caption>
                         <tr>
@@ -197,7 +212,7 @@
                         </tr>
                     </table>
                 </a>
-                <a id="HORVAT" href='foglalas.html'>
+                <a id="HORVAT" href='foglalas.php'>
                     <table class="tabble">
                         <caption><h3 class="country">Horvátország - Zágráb</h3></caption>
                         <tr>
@@ -250,7 +265,7 @@
                         </tr>
                     </table>
                 </a>
-                <a id="FRANCIA" href='foglalas.html'>
+                <a id="FRANCIA" href='foglalas.php'>
                     <table class="tabble">
                         <caption><h3 class="country">Franciaország - Páris</h3></caption>
                         <tr>
@@ -297,7 +312,7 @@
                         </tr>
                     </table>
                 </a>
-                <a id="NY" href='foglalas.html'>
+                <a id="NY" href='foglalas.php'>
                     <table class="tabble">
                         <caption><h3 class="country">USA - New York</h3></caption>
                         <tr>
@@ -346,7 +361,7 @@
                         </tr>
                     </table>
                 </a>
-                <a id="UK" href='foglalas.html'>
+                <a id="UK" href='foglalas.php'>
                     <table class="tabble">
                         <caption><h3 class="country">UK- London</h3></caption>
                         <tr>

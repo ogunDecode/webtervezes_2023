@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
 <!doctype html>
 <html lang="hu">
 
@@ -20,7 +28,7 @@
         <div class="header-area">
             <div class="container" id="row">
                 <div class="col-2">
-                    <a id="navbar-brand" href="index.html"><!-- Logo Image -->
+                    <a id="navbar-brand" href="index.php"><!-- Logo Image -->
                         <img alt="" id="logox" src="img/logo.png">
                     </a>
                 </div>
@@ -52,32 +60,42 @@
         <div class="container">
             <ul id="navbar-ul">
                 <li>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="index.php">
                         Főoldal</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="szallasok.html">
+                    <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="videok.html">
+                    <a class="nav-link" href="videok.php">
                         Videók</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="kapcsolat.html">
+                    <a class="nav-link" href="kapcsolat.php">
                         Kapcsolat</a>
                 </li>
-                <li>
-                    <a id="active" class="nav-link" href="foglalas.html">
-                        Foglalás</a>
-                </li>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li>
+                        <a id="active" class="nav-link" href="foglalas.php">
+                            Foglalás</a>
+                    </li>
+                <?php } ?>
+                <div style="margin-left: auto; display: flex">
+                    <?php if (isset($_SESSION["user"])) { ?>
+                        <li><a class="nav-link" href="profile.php">Profilom</a></li>
+                        <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+                    <?php } else { ?>
+                        <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
+                        <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
+                    <?php } ?>
+                </div>
             </ul>
         </div>
     </nav>
 </header>
 <main>
     <div id="navutan" class="bubbles">
-
         <h3>Kedves leendő vendégünk!</h3>
 
         <p>
