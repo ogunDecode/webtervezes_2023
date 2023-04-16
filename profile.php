@@ -3,12 +3,12 @@ session_start();
 include "kozos.php";
 // süti
 $see = 1;
-if (isset($_COOKIE["visits"])) {
-    $latogatasok = $_COOKIE["visits"] + 1;
-}
-setcookie("visits", $see, time() + (60*60*24*10), "/");
-echo "Üdvözöllek ismét! Ez a(z) $see. látogatásod.";
 
+if (isset($_COOKIE["visits"])) {
+    $see = $_COOKIE["visits"] + 1;
+}
+setcookie("visits", $see, time() + (60 * 60 * 24 * 30), "/");
+echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $see. látogatásod.</p>";
 
 
 if (!isset($_SESSION["user"])) {
@@ -110,10 +110,10 @@ function nemet_konvertal($betujel)
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
@@ -235,98 +235,66 @@ function nemet_konvertal($betujel)
             <input type="password" id="password" name="password">
             <button class="fgomb" type="submit" name="delete" value="1">Felhasználó törlése</button>
         </form>
-          <p>A szállodai foglalásokon kívül oldalunk lehetőséget add a fopglalóink megismerésére, ezzel a szolgáltatási fungcioval akarjuk biztositani
-            hogy nem csak egy kivételés utazási élményt biztositunk de lehetőséget adunk hosszutávú ismeretséget kialakitására.
-          </p>
-          <p>
-            (Sajnálatal közöljük hogy zaklatási panaszok véget ez a szolgáltatás az admin kivételével csak az azonos nemmel rendelkező felhasználokkal működik)
-          </p>
+        <p>A szállodai foglalásokon kívül oldalunk lehetőséget add a fopglalóink megismerésére, ezzel a szolgáltatási
+            fungcioval akarjuk biztositani
+            hogy nem csak egy kivételés utazási élményt biztositunk de lehetőséget adunk hosszutávú ismeretséget
+            kialakitására.
+        </p>
+        <p>
+            (Sajnálatal közöljük hogy zaklatási panaszok véget ez a szolgáltatás az admin kivételével csak az azonos
+            nemmel rendelkező felhasználokkal működik)
+        </p>
 
 
-          
-    <?php    //innentol csináltam -------------------------------
-       if (isset($_POST["elkuld"])) {
-        if (!isset($_SESSION['user']) && isset($_SESSION['user'])=="admin") {
-            
-            
-        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
-        $beirt_szoveg = $_POST["szoveg"];  
-        } else {
-            if(!isset($_POST['user'])=="admin"){
-                $id=$_POST['idelete'];}
-            exit();
-        }header('Location: profile.php');
-       }
-    ?>
-    <?php
-       if (isset($_POST["elkuld"])) {
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="nő") {
-            
-            
-        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
-        $beirt_szoveg = $_POST["szoveg"];  
-        } else {
-            if(!isset($_POST['betujel'])=="nő"){
-                $id=$_POST['idelete'];}
-            exit();
-        }header('Location: profile.php');
-       }
-    ?>
-    <?php
-       if (isset($_POST["elkuld"])) {
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="férfi") {
-            
-            
-        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
-        $beirt_szoveg = $_POST["szoveg"];  
-        } else {
-            if(!isset($_POST['betujel'])=="férfi"){
-                $id=$_POST['idelete'];}
-            exit();
-        }header('Location: profile.php');
-       }
-    ?>
         <?php
-       if (isset($_POST["elkuld"])) {
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="egyéb") {
-            
-            
-        $uzenet = "Ezt üzened a felhasználonak: $beirt_szoveg";
-        $beirt_szoveg = $_POST["szoveg"];  
-        } else {
-            if(!isset($_POST['betujel'])=="egyéb"){
-                $id=$_POST['idelete'];}
-            exit();
-        }header('Location: profile.php');
-       }
-    ?>
-        <form action="profile.php" method="POST" id="idelete">
+        if (isset($_POST["elkuld"])) {
+            $beirt_szoveg = $_POST["szoveg"];
+
+            if (isset($_SESSION['user'])) {
+                if ($_SESSION['user']['perm'] == 1) {
+                    $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                } else {
+                    if ($_SESSION['user']['nem'] == "N") {
+                        $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                    } else if ($_SESSION['user']['nem'] == "F") {
+                        $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                    } else if ($_SESSION['user']['nem'] == "E") {
+                        $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                    } else {
+                        $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                    }
+                }
+            }
+
+        }
+        ?>
         <?php
-        if (!isset($_SESSION['user']) && isset($_SESSION['user'])=="admin") 
-        else{ $id=$_POST['admindelete'];}?>
-        <p $id="admindelete">Adminként bárkinek küldhet üzenetett.</br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
-        <?php
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="férfi")  
-        else{ $id=$_POST['ferdelete'];}?>
-        <p $id="ferdelete">Férfiként csak férfiaknak küldhet üzenetett </br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
-        <?php
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="nő")  
-        else{ $id=$_POST['nodelete'];}?>
-        <p $id="nodelete">Nőként csak nőknek küldhet üzenetett</br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p>
-        <?php 
-        if (!isset($_SESSION['user']) && isset($_SESSION['betujel'])=="egyéb")  
-        else{ $id=$_POST['egydelete'];}?>
-        <p $id="egydelete">Egyébként csak egyébeknek küldhet üzenetett </br> Kérem válassza ki a személyeket ha személyre szóló üzenetett akar küldeni:</p> 
-        <input type="text" name="szoveg"/>
-        <input type="submit" name="elkuld"/> <br/>
+        if (isset($_SESSION['user']) && $_SESSION['user']['perm'] == 1) {
+            $form_id = "admindelete";
+            $message = "Adminként bárkinek küldhet üzenetet.<br> Kérem válassza ki a személyeket ha személyre szóló üzenetet akar küldeni:";
+        } else if (isset($_SESSION['user']) && $_SESSION['user']['nem'] == "F") {
+            $form_id = "ferdelete";
+            $message = "Férfiként csak férfiaknak küldhet üzenetet.<br> Kérem válassza ki a személyeket ha személyre szóló üzenetet akar küldeni:";
+        } else if (isset($_SESSION['user']) && $_SESSION['user']['nem'] == "N") {
+            $form_id = "nodelete";
+            $message = "Nőként csak nőknek küldhet üzenetet.<br> Kérem válassza ki a személyeket ha személyre szóló üzenetet akar küldeni:";
+        } else if (isset($_SESSION['user']) && $_SESSION['user']['nem'] == "E") {
+            $form_id = "egydelete";
+            $message = "Egyébként csak egyebeknek küldhet üzenetet.<br> Kérem válassza ki a személyeket ha személyre szóló üzenetet akar küldeni:";
+        }
+        ?>
+        <form action="profile.php" method="POST" id="<?php echo $form_id; ?>">
+            <p><?php echo $message; ?></p>
+            <input type="text" name="szoveg"/>
+            <input type="submit" name="elkuld"/> <br/>
         </form>
-        <?php echo "<p>" . $uzenet . "</p>";
-        
-        //eddig csináltam
+        <?php
+        if (isset($uzenet))
+        echo "<p>" . $uzenet . "</p>";
         ?>
     </div>
 </main>
-<footer>
+<footer id="long">
     <div>
         <p>
             <small>Copyright © 2023 Sóki Krisztián és Ogunde Edwin. Minden jog fenntartva. | Design: Webterv Gy.</small>
