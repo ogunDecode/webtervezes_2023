@@ -43,7 +43,7 @@ input {
     overflow: visible;
 }
 
-input[type='text'], input[type='email'], input[type='password'], input[type='date'] {
+input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='date'] {
     display: inline-block;
     width: 49%;
     margin: 2px 0;
@@ -104,10 +104,12 @@ fieldset, #masodl, .radio-group {
     vertical-align: top;
     box-sizing: border-box;
 }
-fieldset{
+
+fieldset {
     padding-left: 10px;
     padding-bottom: 5px;
 }
+
 .radio-group {
     width: 24%;
 }
@@ -116,3 +118,26 @@ fieldset{
     padding-top: 29px;
 }
 
+.logs label {
+    width: auto;
+}
+
+#fields label, .logs input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='date'] {
+    width: 100%;
+}
+
+.logs{
+    width: 50%;
+    margin-left: 25%;
+    min-height: auto;
+}
+.logs .fgomb{
+    margin-top: 20px;
+}
+.logs form{
+    margin: 0;
+}
+
+#texts p{
+    margin: 10px 0 0;
+}

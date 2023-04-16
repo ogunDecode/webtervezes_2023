@@ -155,7 +155,7 @@ if (isset($_POST["regiszt"])) {
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles">
+    <div id="navutan" class="bubbles logs">
         <h3>Regisztráció</h3>
         <hr/>
 
@@ -163,23 +163,33 @@ if (isset($_POST["regiszt"])) {
 
         <!-- Mivel az űrlapon egy fájlfeltöltés opciót is elhelyezünk, ezért az enctype="multipart/form-data" attribútumot is használnunk kell -->
         <form class="signup" action="signup.php" method="POST" enctype="multipart/form-data">
-            <label>Felhasználónév: <input type="text" name="felhasznalonev" value="<?php if (isset($_POST['felhasznalonev'])) echo $_POST['felhasznalonev']; ?>"/></label> <br/>
-            <label>Jelszó: <input type="password" name="jelszo"/></label> <br/>
-            <label>Jelszó ismét: <input type="password" name="jelszo2"/></label> <br/>
-            <label>Életkor: <input type="number" name="eletkor" value="<?php if (isset($_POST['eletkor'])) echo $_POST['eletkor']; ?>"/></label> <br/>
-            Nem:
-            <label><input type="radio" name="nem" value="F" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'F') echo 'checked'; ?>/> Férfi</label>
-            <label><input type="radio" name="nem" value="N" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'N') echo 'checked'; ?>/> Nő</label>
-            <label><input type="radio" name="nem" value="E" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'E') echo 'checked'; ?>/> Egyéb</label> <br/>
-            Hobbik:
-            <label><input type="checkbox" name="hobbik[]" value="programozás" <?php if (isset($_POST['hobbik']) && in_array('programozás', $_POST['hobbik'])) echo 'checked'; ?>/> Programozás</label>
-            <label><input type="checkbox" name="hobbik[]" value="főzés" <?php if (isset($_POST['hobbik']) && in_array('főzés', $_POST['hobbik'])) echo 'checked'; ?>/> Főzés</label>
-            <label><input type="checkbox" name="hobbik[]" value="macskázás" <?php if (isset($_POST['hobbik']) && in_array('macskázás', $_POST['hobbik'])) echo 'checked'; ?>/> Macskázás</label>
-            <label><input type="checkbox" name="hobbik[]" value="mémnézegetés" <?php if (isset($_POST['hobbik']) && in_array('mémnézegetés', $_POST['hobbik'])) echo 'checked'; ?>/> Mémnézegetés</label>
-            <label><input type="checkbox" name="hobbik[]" value="alvás" <?php if (isset($_POST['hobbik']) && in_array('alvás', $_POST['hobbik'])) echo 'checked'; ?>/> Alvás</label> <br/>
-            <!-- Fájlfeltöltés űrlapmező -->
-            <label>Profilkép: <input type="file" name="profile-pic" accept="image/*"/></label> <br/>
-            <input class="fgomb" type="submit" name="regiszt"/> <br/><br/>
+            <div id="fields">
+                <label>Felhasználónév: <input type="text" name="felhasznalonev" value="<?php if (isset($_POST['felhasznalonev'])) echo $_POST['felhasznalonev']; ?>"/></label> <br/>
+                <label>Jelszó: <input type="password" name="jelszo"/></label> <br/>
+                <label>Jelszó ismét: <input type="password" name="jelszo2"/></label> <br/>
+                <label>Életkor: <input type="number" name="eletkor" value="<?php if (isset($_POST['eletkor'])) echo $_POST['eletkor']; ?>"/></label> <br/>
+            </div>
+            <div id="texts">
+                <p>
+                    Nem:
+                    <label><input type="radio" name="nem" value="F" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'F') echo 'checked'; ?>/> Férfi</label>
+                    <label><input type="radio" name="nem" value="N" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'N') echo 'checked'; ?>/> Nő</label>
+                    <label><input type="radio" name="nem" value="E" <?php if (isset($_POST['nem']) && $_POST['nem'] === 'E') echo 'checked'; ?>/> Egyéb</label> <br/>
+                </p>
+                <p>
+                    Hobbik:
+                    <label><input type="checkbox" name="hobbik[]" value="programozás" <?php if (isset($_POST['hobbik']) && in_array('programozás', $_POST['hobbik'])) echo 'checked'; ?>/> Programozás</label>
+                    <label><input type="checkbox" name="hobbik[]" value="főzés" <?php if (isset($_POST['hobbik']) && in_array('főzés', $_POST['hobbik'])) echo 'checked'; ?>/> Főzés</label>
+                    <label><input type="checkbox" name="hobbik[]" value="macskázás" <?php if (isset($_POST['hobbik']) && in_array('macskázás', $_POST['hobbik'])) echo 'checked'; ?>/> Macskázás</label>
+                    <label><input type="checkbox" name="hobbik[]" value="mémnézegetés" <?php if (isset($_POST['hobbik']) && in_array('mémnézegetés', $_POST['hobbik'])) echo 'checked'; ?>/> Mémnézegetés</label>
+                    <label><input type="checkbox" name="hobbik[]" value="alvás" <?php if (isset($_POST['hobbik']) && in_array('alvás', $_POST['hobbik'])) echo 'checked'; ?>/> Alvás</label> <br/>
+                </p>
+                <!-- Fájlfeltöltés űrlapmező -->
+                <p>
+                    <label>Profilkép: <input type="file" name="profile-pic" accept="image/*"/></label> <br/>
+                    <input class="fgomb" type="submit" name="regiszt"/> <br/><br/>
+                </p>
+            </div>
         </form>
 
         <?php

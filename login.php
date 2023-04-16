@@ -114,14 +114,16 @@ if (isset($_POST["login"])) {
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles">
+    <div id="navutan" class="bubbles logs">
         <h3>Kérlek jelentkezz be!</h3>
         <hr/>
         
         <form action="login.php" method="POST">
-            <label>Felhasználónév: <input type="text" name="felhasznalonev"/></label> <br/>
-            <label>Jelszó: <input type="password" name="jelszo"/></label> <br/>
-            <input class="fgomb" type="submit" name="login"/> <br/><br/>
+            <div id="fields">
+                <label>Felhasználónév: <input type="text" name="felhasznalonev"/></label> <br/>
+                <label>Jelszó: <input type="password" name="jelszo"/></label> <br/>
+                <input class="fgomb" type="submit" name="login"/> <br/><br/>
+            </div>
         </form>
         <?php echo $uzenet . "<br/>"; ?>
     </div>
