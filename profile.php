@@ -107,6 +107,10 @@ function nemet_konvertal($betujel)
                             Foglalás</a>
                     </li>
                 <?php } ?>
+                <li>
+                    <a class="nav-link" href="foglalasok.php">
+                        Foglalások</a>
+                </li>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
                         <li><a id="active" class="nav-link" href="profile.php">Profilom</a></li>

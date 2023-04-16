@@ -1,12 +1,18 @@
 <?php
 session_start();
+include "kozos.php";
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+$foglalasok = loadFoglalasok("foglalasok.txt");
 ?>
 
 <!doctype html>
 <html lang="hu">
 
 <head>
-    <title>Utazási iroda - Kapcsolat</title>
+    <title>Utazási iroda - Foglalás</title>
     <meta charset="utf-8">
     <meta name="description" content="2023 Webtervezés projektmunka">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +22,11 @@ session_start();
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/urlap.css">
+    <style>
+        #navutan{
+            margin-bottom: 160px;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,12 +79,12 @@ session_start();
                         Videók</a>
                 </li>
                 <li>
-                    <a id="active" class="nav-link" href="kapcsolat.php">
+                    <a class="nav-link" href="kapcsolat.php">
                         Kapcsolat</a>
                 </li>
                 <?php if (isset($_SESSION["user"])) { ?>
                     <li>
-                        <a class="nav-link" href="foglalas.php">
+                        <a id="active" class="nav-link" href="foglalas.php">
                             Foglalás</a>
                     </li>
                 <?php } ?>
@@ -82,57 +93,63 @@ session_start();
                         Foglalások</a>
                 </li>
                 <div style="margin-left: auto; display: flex">
-                <?php if (isset($_SESSION["user"])) { ?>
-                    <li><a class="nav-link" href="profile.php">Profilom</a></li>
-                    <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
-                <?php } else { ?>
-                    <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                    <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
-                <?php } ?>
+                    <?php if (isset($_SESSION["user"])) { ?>
+                        <li><a class="nav-link" href="profile.php">Profilom</a></li>
+                        <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+                    <?php } else { ?>
+                        <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
+                        <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
+                    <?php } ?>
                 </div>
             </ul>
         </div>
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles">
-        <div class="NOTcard page-card NOTshadow">
-            <h3>Elérhetőségeink</h3>
-            <div class="desctext">
-                    <span style="font-size:20px;"><strong>Irodánk: </strong></span>
-                <p>
-                    <strong>Cím: </strong><a href="https://goo.gl/maps/M8xDcztKdcNz54cy6" target="_blank">6725 Szeged,
-                    Tisza Lajos krt. 103.</a>
-                </p>
-                <p>
-                    <strong>Telefon: </strong>
-                    Telefon: +36 (12) 345-678<br>
-                    Fax: +36 (12) 345-876<br>
-                    Mobil: +36 (87) 654-3210
-                </p>
-                <p>
-                    <strong>Email: </strong><br>
-                    info@skytravel.hu
-                </p>
-                <p>
-                    <strong>Skype: </strong><br>
-                    Skype_Name
-                </p>
-                <p>
-                    <strong>Nyitvatartás: </strong><br>
-                    H-P: 8:00-17:30<br>
-                    SZOMBATON: ZÁRVA<br>
-                    VASÁRNAP: ZÁRVA
-                </p>
-                <p>
-                    <iframe allowfullscreen="" loading="lazy"
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11036.675400134667!2d20.1469232!3d46.246871!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4744886557ac1407%3A0x8ef6cdceb30443a2!2sUniversity%20of%20Szeged%20Irinyi%20building!5e0!3m2!1sen!2shu!4v1679237042477!5m2!1sen!2shu"
-                            style="border:0; width: 100%; height: 450px;"></iframe>
-                </p>
+    <?php
+    foreach ($foglalasok as $key => $foglalas) {
+        $div_id = ($key === 0) ? "navutan" : "";
+        echo "<div id='$div_id' class='bubbles'>";
+        echo "Vendég neve: ";
+        if ($foglalas["sex"] == "m") {
+            echo "Mr. ";
+        } else {
+            echo "Ms. ";
+        }
+        echo $foglalas["teljesnev"] . "<br>";
+        echo "Születési dátuma: " . $foglalas["szuletes"] . "<br>";
+        echo "E-mail címe: " . $foglalas["email"] . "<br>";
+        echo "Szobák: ";
+        if ($foglalas["szobak"] !== "bérlés") {
+            echo $foglalas["szobak"] . " szoba" . "<br>";
+        } else {
+            echo "Bérli a szállást" . "<br>";
+        }
+        echo "Éjszaka: ";
+        if ($foglalas["ejszakak"] !== "bérlés") {
+            echo $foglalas["ejszakak"] . " éjszaka" . "<br>";
+        } else {
+            echo "Bérli a szállást" . "<br>";
+        }
+        echo "Étkezések: ";
+        if ($foglalas["op1"] == "Y") {
+            echo "reggeli ";
+        }
+        if ($foglalas["op2"] == "Y") {
+            echo "ebéd ";
+        }
+        if ($foglalas["op3"] == "Y") {
+            echo "vacsora";
+        }
+        if ($foglalas["op1"] !== "Y" && $foglalas["op2"] !== "Y" && $foglalas["op3"] !== "Y") {
+            echo "X";
+        }
+        echo "<br>";
+        echo "Megjegyzés: " . $foglalas["introd"] . "<br>";
+        echo "</div>";
+    }
+    ?>
 
-            </div>
-        </div>
-    </div>
 </main>
 <footer id="long">
     <div>
@@ -142,5 +159,4 @@ session_start();
     </div>
 </footer>
 </body>
-
 </html>

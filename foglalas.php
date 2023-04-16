@@ -1,63 +1,75 @@
 <?php
 session_start();
+include "kozos.php";
+$foglalasok = loadFoglalasok("foglalasok.txt");
 
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
 }
 ?>
-<?php  // a szálloda nevét még nem csináltam mivel az a link adja majd
-$uzenet1 = "";
+<?php // a szálloda nevét még nem csináltam mivel az a link adja majd
 
+$hibak = [];
+
+$uzenet1 = "";
 if (isset($_GET["submit-btn"])) {
     if (isset($_GET["full-name"]) && trim($_GET["full-name"]) !== "") {
-        $beirt_szoveg = $_GET["full-name"];
-        //a foglat nevekkel (amit a feledat ir) nem igazán tudom hogy mit kezdjek arra gondoltam csak hogy irok random neveket a php-ba és azt ellenőrzöm
+        $teljesnev = $_GET["full-name"];
     } else {
-        $uzenet1 = "<strong>Hiba!</strong> Írj be valamit az űrlapmezőbe!";
+        $hibak[] = "<strong>Hiba!</strong> Add meg a neved!";
     }
-}
-$uzenet2 = "";
 
-if (isset($_GET["submit-btn"])) {
     if (isset($_GET["date-of-birth"]) && trim($_GET["date-of-birth"]) !== "") {
         $szuletes = $_GET["date-of-birth"];
     } else {
-        $uzenet2 = "<strong>Hiba!</strong> Írj be valamit az űrlapmezőbe!";
+        $hibak[] = "<strong>Hiba!</strong> Add meg a születési dátumod!";
     }
-}
-$uzenet3 = "";
 
-if (isset($_GET["submit-btn"])) {
     if (isset($_GET["email"]) && trim($_GET["email"]) !== "") {
         $email = $_GET["email"];
     } else {
-        $uzenet3 = "<strong>Hiba!</strong> Írj be valamit az űrlapmezőbe!";
+        $hibak[] = "<strong>Hiba!</strong> Add meg az e-mail címed!";
     }
-}
 
-$uzenet4 = "";
-
-if (isset($_GET["submit-btn"])) {
-    if (isset($_GET["passwd"]) && trim($_GET["passwd"]) !== "") {
-        $jelszo = password_hash($_GET["passwd"]);
+    if (isset($_GET["passwd"]) && password_verify($_GET['passwd'], $_SESSION["user"]['jelszo'])) {
     } else {
-        $uzenet4 = "<strong>Hiba!</strong> Írj be valamit az űrlapmezőbe!";
+        $hibak[] = "<strong>Hiba!</strong> Helytelen jelszó!";
     }
-}
 
-$uzenet5 = "";
+    $sex = NULL;
+    if (isset($_GET["sex"]))
+        $sex = $_GET["sex"];
+    $introd = NULL;
+    if (isset($_GET["intro"]))
+        $introd = $_GET["intro"];
+    $szobak = NULL;
+    if (isset($_GET["szobak"]))
+        $szobak = $_GET["szobak"];
+    $ejszakak = NULL;
+    if (isset($_GET["ejszakak"]))
+        $ejszakak = $_GET["ejszakak"];
+    $op1 = NULL;
+    if (isset($_GET["op-1"]))
+        $op1 = $_GET["op-1"];
+    $op2 = NULL;
+    if (isset($_GET["op-2"]))
+        $op2 = $_GET["op-2"];
+    $op3 = NULL;
+    if (isset($_GET["op-3"]))
+        $op3 = $_GET["op-3"];
 
-if (isset($_GET["submit-btn"])) {
-    if (isset($_GET["passwd-check"]) && trim($_GET["passwd-check"]) !== "") {
-        $jelszoel = password_hash($_GET["passwd-check"]);
-    } else {
-        $uzenet5 = "<strong>Hiba!</strong> Írj be valamit az űrlapmezőbe!";
+
+    if (count($hibak) === 0) {   // sikeres foglalas
+        $foglalasok[] = ["teljesnev" => $teljesnev, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3];
+        saveFoglalasok("foglalasok.txt", $foglalasok);
+        $siker = TRUE;
+    } else {                    // sikertelen foglalas
+        $siker = FALSE;
     }
-    var_dump(password_verify($jelszo, $jelszoel)); echo "<br/>";
 }
 ?>
-<?php  // majd a szolgáltatásokat át kell írni hogy csak op-1 legyen a nevük
+<?php // majd a szolgáltatásokat át kell írni hogy csak op-1 legyen a nevük
 $kira = "";
 if (isset($_GET["elkuld"])) {
     if (isset($_GET["op-1"])) {
@@ -141,6 +153,10 @@ if (isset($_GET["elkuld"])) {
                             Foglalás</a>
                     </li>
                 <?php } ?>
+                <li>
+                    <a class="nav-link" href="foglalasok.php">
+                        Foglalások</a>
+                </li>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
                         <li><a class="nav-link" href="profile.php">Profilom</a></li>
@@ -168,37 +184,36 @@ if (isset($_GET["elkuld"])) {
             <fieldset>
                 <legend>Elsödleges foglalási adatok</legend>
                 <label>Szálloda neve: </label><input type="text" name="user-place" value="száloda neve" disabled> <br>
-                <label>Teljes név: </label><input type="text" name="full-name" size="25" required> <br>
-                <label>Születési dátum: </label><input type="date" name="date-of-birth" min="1920-01-01" required>
+                <label>Vendég neve: </label><input type="text" name="full-name" size="25"> <br>
+                <label>Születési dátuma: </label><input type="date" name="date-of-birth" min="1920-01-01">
                 <br>
-                <label>E-mail: </label><input type="email" name="email" required> <br>
+                <label>E-mail-e: </label><input type="email" name="email"> <br>
                 <label>Jelszó: </label><input type="password" name="passwd" required> <br>
-                <label>Jelszó ismét: </label><input type="password" name="passwd-check" required> <br>
             </fieldset>
             <div id="masodl">
                 <label for="place">Foglalás tipusa:</label>
-                <select id="place">
-                    <option value="one">Egy északa</option>
-                    <option value="two">Két északa</option>
-                    <option value="more">Több mint két északa</option>
-                    <option value="other" selected>Kibérlés</option>
+                <select id="place" name="ejszakak">
+                    <option value="egy">Egy éjszaka</option>
+                    <option value="két">Két éjszaka</option>
+                    <option value="több mint két">Több mint két északa</option>
+                    <option value="bérlés" selected>Kibérlés</option>
                 </select> <br>
 
                 <label for="night">Szobák száma:</label>
-                <select id="night">
-                    <option value="one">Egy szoba</option>
-                    <option value="two">Két szoba</option>
-                    <option value="more">Több mint két szoba</option>
-                    <option value="other" selected>Kibérlés</option>
+                <select id="night" name="szobak">
+                    <option value="egy">Egy szoba</option>
+                    <option value="két">Két szoba</option>
+                    <option value="több mint két">Több mint két szoba</option>
+                    <option value="bérlés" selected>Kibérlés</option>
                 </select> <br>
 
                 Kért szolgáltatás:<br>
                 <label for="op-1">Reggeli:</label>
-                <input type="checkbox" id="op-1" name="op-1" value="morn">
+                <input type="checkbox" id="op-1" name="op-1" value="Y">
                 <label for="op-2">Ebéd:</label>
-                <input type="checkbox" id="op-2" name="op-2" value="noon">
+                <input type="checkbox" id="op-2" name="op-2" value="Y">
                 <label for="op-3">Vacsora:</label>
-                <input type="checkbox" id="op-3" name="op-3" value="late"> <br>
+                <input type="checkbox" id="op-3" name="op-3" value="Y"> <br>
             </div>
             <label for="introd">Egyéb fontosnak tartott információk (max. 200 karakter):</label> <br>
             <textarea id="introd" name="intro" maxlength="200"></textarea>
@@ -213,6 +228,17 @@ if (isset($_GET["elkuld"])) {
             <input type="submit" class="fgomb" name="submit-btn" value="Adatok elküldése">
             <input type="reset" class="fgomb" name="reset-btn" value="Adatok törlése">
         </form>
+        <div id="errors">
+            <?php
+            if (isset($siker) && $siker === TRUE) {  // ha nem volt hiba, akkor a regisztráció sikeres
+                echo "<p>Sikeres Foglalas</p>";
+            } else {                                // az esetleges hibákat kiírjuk egy-egy bekezdésben
+                foreach ($hibak as $hiba) {
+                    echo "<p>" . $hiba . "</p>";
+                }
+            }
+            ?>
+        </div>
     </div>
 </main>
 <footer id="long">

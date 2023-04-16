@@ -150,3 +150,7 @@ button[name*="delete"]{
 input[name*="upload-btn"]{
      width: 190px;
  }
+
+#errors p {
+    margin: 10px 0 0;
+}

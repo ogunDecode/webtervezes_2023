@@ -59,7 +59,6 @@ if (isset($_POST["regiszt"])) {
         $fiokok[] = ["felhasznalonev" => $felhasznalonev, "jelszo" => $jelszo, "eletkor" => $eletkor, "nem" => $nem, "hobbik" => $hobbik];
         saveUsers("users.txt", $fiokok);
         $siker = TRUE;
-        header("Location: login.php");
     } else {                    // sikertelen regisztráció
         $siker = FALSE;
     }
@@ -141,6 +140,10 @@ if (isset($_POST["regiszt"])) {
                             Foglalás</a>
                     </li>
                 <?php } ?>
+                <li>
+                    <a class="nav-link" href="foglalasok.php">
+                        Foglalások</a>
+                </li>
                 <div style="margin-left: auto; display: flex">
                 <?php if (isset($_SESSION["user"])) { ?>
                     <li><a class="nav-link" href="profile.php">Profilom</a></li>

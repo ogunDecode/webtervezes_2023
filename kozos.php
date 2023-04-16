@@ -32,6 +32,33 @@ function saveUsers($path, $users) {
   fclose($file);
 }
 
+function loadFoglalasok($path) {
+    $foglalasok = [];
+
+    $file = fopen($path, "r");
+    if ($file === FALSE)
+        die("HIBA: A fájl megnyitása nem sikerült!");
+
+    while (($line = fgets($file)) !== FALSE) {
+        $foglalas = unserialize($line);
+        $foglalasok[] = $foglalas;
+    }
+
+    fclose($file);
+    return $foglalasok;
+}
+function saveFoglalasok($path, $foglalasok) {
+    $file = fopen($path, "w");
+    if ($file === FALSE)
+        die("HIBA: A fájl megnyitása nem sikerült!");
+
+    foreach($foglalasok as $foglalas) {
+        $serialized_reservation = serialize($foglalas);
+        fwrite($file, $serialized_reservation . "\n");
+    }
+
+    fclose($file);
+}
 // a profilkép feltöltését végző függvény
 
 function uploadProfilePicture($username) {
