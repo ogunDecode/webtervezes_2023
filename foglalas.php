@@ -70,7 +70,8 @@ if (isset($_POST["submit-btn"])) {
 
 
     if (count($hibak) === 0) {   // sikeres foglalas
-        $foglalasok[] = ["teljesnev" => $teljesnev, "szallas" => $szallas, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3];
+        $felh = $_SESSION["user"]["felhasznalonev"];
+        $foglalasok[] = ["teljesnev" => $teljesnev, "szallas" => $szallas, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3, "felh" => $felh];
         saveFoglalasok("foglalasok.txt", $foglalasok);
         $siker = TRUE;
     } else {                    // sikertelen foglalas
@@ -148,7 +149,7 @@ if (isset($_POST["elkuld"])) {
                     <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
-                <?php if ($_SESSION["user"]["perm"] !== 1) { ?>
+                <?php if (!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["perm"] !== 1) { ?>
                     <li>
                         <a class="nav-link" href="videok.php">
                             Videók</a>

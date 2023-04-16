@@ -87,7 +87,7 @@ if (isset($_POST["login"])) {
                     <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
-                <?php if ($_SESSION["user"]["perm"] !== 1) { ?>
+                <?php if (!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["perm"] !== 1) { ?>
                     <li>
                         <a class="nav-link" href="videok.php">
                             Videók</a>

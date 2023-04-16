@@ -4,7 +4,7 @@ include "kozos.php";
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
-}else if ($_SESSION["user"]["perm"] == 0){
+} else if ($_SESSION["user"]["perm"] == 0) {
     header('Location: foglalas.php');
     exit();
 }
@@ -26,8 +26,12 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/urlap.css">
     <style>
-        #navutan{
+        #navutan {
             margin-bottom: 160px;
+        }
+
+        .bubbles {
+            min-height: 370px;
         }
     </style>
 </head>
@@ -77,7 +81,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
                     <a class="nav-link" href="szallasok.php">
                         Szállások</a>
                 </li>
-                <?php if ($_SESSION["user"]["perm"] !== 1) { ?>
+                <?php if (!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["perm"] !== 1) { ?>
                     <li>
                         <a class="nav-link" href="videok.php">
                             Videók</a>
@@ -94,10 +98,10 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a id="active" class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a id="active" class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
@@ -114,32 +118,45 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 </header>
 <main>
     <?php
+    $length = count($foglalasok)+1;
     foreach (array_reverse($foglalasok) as $key => $foglalas) {
+        $profilkep = "img/default.png";
+        $utvonal = "img/" . $foglalas["felh"];
+        $kiterjesztesek = ["png", "jpg", "jpeg"];
+        foreach ($kiterjesztesek as $kiterjesztes) {
+            if (file_exists($utvonal . "." . $kiterjesztes)) {
+                $profilkep = $utvonal . "." . $kiterjesztes;
+            }
+        }
+        $length -= 1;
+
         $div_id = ($key === 0) ? "navutan" : "";
         echo "<div id='$div_id' class='bubbles'>";
-        echo "Vendég neve: ";
+        echo "<h3>#" . $length . " foglalás</h3>";
+        echo "<img src=" . $profilkep . " alt='Profilkép' height='200'/>";
+        echo "<p>Vendég neve: ";
         if ($foglalas["sex"] == "m") {
             echo "Mr. ";
         } else {
             echo "Ms. ";
         }
-        echo $foglalas["teljesnev"] . "<br>";
-        echo "Szállás: " . $foglalas["szallas"] . "<br>";
-        echo "Születési dátuma: " . $foglalas["szuletes"] . "<br>";
-        echo "E-mail címe: " . $foglalas["email"] . "<br>";
-        echo "Szobák: ";
+        echo $foglalas["teljesnev"] . "</p>";
+        echo "<p>Szállás: " . $foglalas["szallas"] . "</p>";
+        echo "<p>Születési dátuma: " . $foglalas["szuletes"] . "</p>";
+        echo "<p>E-mail címe: " . $foglalas["email"] . "</p>";
+        echo "<p>Szobák: ";
         if ($foglalas["szobak"] !== "bérlés") {
-            echo $foglalas["szobak"] . " szoba" . "<br>";
+            echo $foglalas["szobak"] . " szoba" . "</p>";
         } else {
-            echo "Bérli a szállást" . "<br>";
+            echo "Bérli a szállást" . "</p>";
         }
-        echo "Éjszaka: ";
+        echo "<p>Éjszaka: ";
         if ($foglalas["ejszakak"] !== "bérlés") {
-            echo $foglalas["ejszakak"] . " éjszaka" . "<br>";
+            echo $foglalas["ejszakak"] . " éjszaka" . "</p>";
         } else {
-            echo "Bérli a szállást" . "<br>";
+            echo "Bérli a szállást" . "</p>";
         }
-        echo "Étkezések: ";
+        echo "<p>Étkezések: ";
         if ($foglalas["op1"] == "Y") {
             echo "reggeli ";
         }
@@ -152,8 +169,8 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
         if ($foglalas["op1"] !== "Y" && $foglalas["op2"] !== "Y" && $foglalas["op3"] !== "Y") {
             echo "X";
         }
-        echo "<br>";
-        echo "Megjegyzés: " . (!empty($foglalas["introd"]) ? $foglalas["introd"] : "-") . "<br>";
+        echo "</p>";
+        echo "<p>Megjegyzés: " . (!empty($foglalas["introd"]) ? $foglalas["introd"] : "-") . "</p>";
         echo "</div>";
     }
     ?>

@@ -1,2 +1,3 @@
 a:6:{s:14:"felhasznalonev";s:5:"admin";s:6:"jelszo";s:60:"$2y$10$HXxKHoY/psaroD9yo6RgUuBC/x.IS4pDJLhXHoom2cSJG9pKhA2H.";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"E";s:6:"hobbik";a:2:{i:0;s:12:"programozás";i:1;s:15:"mémnézegetés";}s:4:"perm";i:1;}
 a:6:{s:14:"felhasznalonev";s:5:"Edwin";s:6:"jelszo";s:60:"$2y$10$e90f0T9WviL4El6.QUUVhu6hlBq09azQfRNEqb29doNFsjk5xxj.q";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:6:"hobbik";a:3:{i:0;s:12:"programozás";i:1;s:15:"mémnézegetés";i:2;s:6:"alvás";}s:4:"perm";i:0;}
+a:6:{s:14:"felhasznalonev";s:6:"Attila";s:6:"jelszo";s:60:"$2y$10$Nw3FWxcrJ/irg/lvifNxruVTNKK34RJQ1q3cA5Vec2N08C8dqDAWm";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:6:"hobbik";a:2:{i:0;s:12:"programozás";i:1;s:7:"főzés";}s:4:"perm";i:0;}
