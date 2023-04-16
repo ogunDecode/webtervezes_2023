@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "kozos.php";
-$foglalasok = loadFoglalasok("foglalasok.txt");
+$foglalasok = loadFoglalasok("txt/foglalasok.txt");
 
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
@@ -72,7 +72,7 @@ if (isset($_POST["submit-btn"])) {
     if (count($hibak) === 0) {
         $felh = $_SESSION["user"]["felhasznalonev"];
         $foglalasok[] = ["teljesnev" => $teljesnev, "szallas" => $szallas, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3, "felh" => $felh];
-        saveFoglalasok("foglalasok.txt", $foglalasok);
+        saveFoglalasok("txt/foglalasok.txt", $foglalasok);
         $siker = TRUE;
     } else {
         $siker = FALSE;

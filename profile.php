@@ -175,7 +175,7 @@ function nemet_konvertal($betujel)
 
         ?>
         <?php
-        $fiokok = loadUsers("users.txt");
+        $fiokok = loadUsers("txt/users.txt");
 
         foreach ($fiokok as $key => $fiok) {
             if ($fiok['felhasznalonev'] == $_SESSION["user"]["felhasznalonev"]) {
@@ -186,7 +186,7 @@ function nemet_konvertal($betujel)
         if (isset($_POST['password']) && password_verify($_POST['password'], $fiokok[$index]['jelszo'])) {
             if ($index !== false) {
                 array_splice($fiokok, $index, 1);
-                saveUsers("users.txt", $fiokok);
+                saveUsers("txt/users.txt", $fiokok);
                 session_unset();
                 session_destroy();
                 header("Location: index.php");

@@ -1,6 +1,6 @@
 <?php
 include "kozos.php";
-$fiokok = loadUsers("users.txt");
+$fiokok = loadUsers("txt/users.txt");
 
 $hibak = [];
 
@@ -51,7 +51,7 @@ if (isset($_POST["regiszt"])) {
         $jelszo = password_hash($jelszo, PASSWORD_DEFAULT);
         $perm = 0; // 1 = admin; 0 = user
         $fiokok[] = ["felhasznalonev" => $felhasznalonev, "jelszo" => $jelszo, "eletkor" => $eletkor, "nem" => $nem, "perm" => $perm];
-        saveUsers("users.txt", $fiokok);
+        saveUsers("txt/users.txt", $fiokok);
         $siker = TRUE;
     } else {
         $siker = FALSE;

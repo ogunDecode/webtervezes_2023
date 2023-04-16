@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
     header('Location: foglalas.php');
     exit();
 }
-$foglalasok = loadFoglalasok("foglalasok.txt");
+$foglalasok = loadFoglalasok("txt/foglalasok.txt");
 ?>
 
 <!doctype html>
