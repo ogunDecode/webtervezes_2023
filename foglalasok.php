@@ -84,12 +84,12 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
                 </li>
                 <?php if (isset($_SESSION["user"])) { ?>
                     <li>
-                        <a id="active" class="nav-link" href="foglalas.php">
+                        <a class="nav-link" href="foglalas.php">
                             Foglalás</a>
                     </li>
                 <?php } ?>
                 <li>
-                    <a class="nav-link" href="foglalasok.php">
+                    <a id="active" class="nav-link" href="foglalasok.php">
                         Foglalások</a>
                 </li>
                 <div style="margin-left: auto; display: flex">
@@ -107,7 +107,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 </header>
 <main>
     <?php
-    foreach ($foglalasok as $key => $foglalas) {
+    foreach (array_reverse($foglalasok) as $key => $foglalas) {
         $div_id = ($key === 0) ? "navutan" : "";
         echo "<div id='$div_id' class='bubbles'>";
         echo "Vendég neve: ";
@@ -117,6 +117,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
             echo "Ms. ";
         }
         echo $foglalas["teljesnev"] . "<br>";
+        echo "Szállás: " . $foglalas["szallas"] . "<br>";
         echo "Születési dátuma: " . $foglalas["szuletes"] . "<br>";
         echo "E-mail címe: " . $foglalas["email"] . "<br>";
         echo "Szobák: ";
@@ -145,7 +146,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
             echo "X";
         }
         echo "<br>";
-        echo "Megjegyzés: " . $foglalas["introd"] . "<br>";
+        echo "Megjegyzés: " . (!empty($foglalas["introd"]) ? $foglalas["introd"] : "-") . "<br>";
         echo "</div>";
     }
     ?>

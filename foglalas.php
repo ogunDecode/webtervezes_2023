@@ -13,55 +13,61 @@ if (!isset($_SESSION['user'])) {
 $hibak = [];
 
 $uzenet1 = "";
-if (isset($_GET["submit-btn"])) {
-    if (isset($_GET["full-name"]) && trim($_GET["full-name"]) !== "") {
-        $teljesnev = $_GET["full-name"];
+if (isset($_POST["submit-btn"])) {
+    if (isset($_POST["full-name"]) && trim($_POST["full-name"]) !== "") {
+        $teljesnev = $_POST["full-name"];
     } else {
         $hibak[] = "<strong>Hiba!</strong> Add meg a neved!";
     }
 
-    if (isset($_GET["date-of-birth"]) && trim($_GET["date-of-birth"]) !== "") {
-        $szuletes = $_GET["date-of-birth"];
+    if ($_POST["user-place"] !== "Válasszon a szállások oldalon") {
+        $szallas = $_POST["user-place"];
+    } else {
+        $hibak[] = "<strong>Hiba!</strong> Vállassz szállást a szállások oldalon!";
+    }
+
+    if (isset($_POST["date-of-birth"]) && trim($_POST["date-of-birth"]) !== "") {
+        $szuletes = $_POST["date-of-birth"];
     } else {
         $hibak[] = "<strong>Hiba!</strong> Add meg a születési dátumod!";
     }
 
-    if (isset($_GET["email"]) && trim($_GET["email"]) !== "") {
-        $email = $_GET["email"];
+    if (isset($_POST["email"]) && trim($_POST["email"]) !== "") {
+        $email = $_POST["email"];
     } else {
         $hibak[] = "<strong>Hiba!</strong> Add meg az e-mail címed!";
     }
 
-    if (isset($_GET["passwd"]) && password_verify($_GET['passwd'], $_SESSION["user"]['jelszo'])) {
+    if (isset($_POST["passwd"]) && password_verify($_POST['passwd'], $_SESSION["user"]['jelszo'])) {
     } else {
         $hibak[] = "<strong>Hiba!</strong> Helytelen jelszó!";
     }
 
     $sex = NULL;
-    if (isset($_GET["sex"]))
-        $sex = $_GET["sex"];
+    if (isset($_POST["sex"]))
+        $sex = $_POST["sex"];
     $introd = NULL;
-    if (isset($_GET["intro"]))
-        $introd = $_GET["intro"];
+    if (isset($_POST["intro"]))
+        $introd = $_POST["intro"];
     $szobak = NULL;
-    if (isset($_GET["szobak"]))
-        $szobak = $_GET["szobak"];
+    if (isset($_POST["szobak"]))
+        $szobak = $_POST["szobak"];
     $ejszakak = NULL;
-    if (isset($_GET["ejszakak"]))
-        $ejszakak = $_GET["ejszakak"];
+    if (isset($_POST["ejszakak"]))
+        $ejszakak = $_POST["ejszakak"];
     $op1 = NULL;
-    if (isset($_GET["op-1"]))
-        $op1 = $_GET["op-1"];
+    if (isset($_POST["op-1"]))
+        $op1 = $_POST["op-1"];
     $op2 = NULL;
-    if (isset($_GET["op-2"]))
-        $op2 = $_GET["op-2"];
+    if (isset($_POST["op-2"]))
+        $op2 = $_POST["op-2"];
     $op3 = NULL;
-    if (isset($_GET["op-3"]))
-        $op3 = $_GET["op-3"];
+    if (isset($_POST["op-3"]))
+        $op3 = $_POST["op-3"];
 
 
     if (count($hibak) === 0) {   // sikeres foglalas
-        $foglalasok[] = ["teljesnev" => $teljesnev, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3];
+        $foglalasok[] = ["teljesnev" => $teljesnev, "szallas" => $szallas, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3];
         saveFoglalasok("foglalasok.txt", $foglalasok);
         $siker = TRUE;
     } else {                    // sikertelen foglalas
@@ -71,9 +77,9 @@ if (isset($_GET["submit-btn"])) {
 ?>
 <?php // majd a szolgáltatásokat át kell írni hogy csak op-1 legyen a nevük
 $kira = "";
-if (isset($_GET["elkuld"])) {
-    if (isset($_GET["op-1"])) {
-        $kivalasztott = $_GET["op-1"];
+if (isset($_POST["elkuld"])) {
+    if (isset($_POST["op-1"])) {
+        $kivalasztott = $_POST["op-1"];
         $kira = "A kiválasztott gyümölcsök: " . implode(", ", $kivalasztott) . "<br/>";
     }
 }
@@ -180,10 +186,13 @@ if (isset($_GET["elkuld"])) {
         <p>Az esetleges kívánságait (pl. erkélyes szoba, egymás melletti szobák stb.) kérjük, hogy írja meg a lent
             elhelyzett szövegdobozba!
         </p>
-        <form method="GET" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Elsödleges foglalási adatok</legend>
-                <label>Szálloda neve: </label><input type="text" name="user-place" value="száloda neve" disabled> <br>
+                <label>Szálloda neve: </label><input type="text" name="user-place"
+                                                     value="<?php echo isset($_GET['name']) ? $_GET['name'] : (isset($_GET['user-place']) ? $_GET['user-place'] : 'Válasszon a szállások oldalon'); ?>"
+                                                     readonly> <br>
+
                 <label>Vendég neve: </label><input type="text" name="full-name" size="25"> <br>
                 <label>Születési dátuma: </label><input type="date" name="date-of-birth" min="1920-01-01">
                 <br>
