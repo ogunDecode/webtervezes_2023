@@ -38,7 +38,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
             margin-left: 20%;
         }
 
-        #adatok {
+        .adatok {
             overflow: auto;
         }
 
@@ -116,15 +116,21 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
                             Foglalások</a>
                     </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
-                    <?php if (isset($_SESSION["user"])) { ?>
-                        <li><a class="nav-link" href="profile.php">Profilom</a></li>
-                        <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
-                    <?php } else { ?>
-                        <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                        <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
-                    <?php } ?>
-                </div>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
+                <?php } else { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </nav>
@@ -143,11 +149,11 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
         }
         $length -= 1;
 
-        $div_id = ($key === 0) ? "navutan" : "";
+        $div_id = ($key === 0) ? "navutan" : "navutan_$key";
         echo "<div id='$div_id' class='bubbles'>";
         echo "<h3>#" . $length . " foglalás</h3><hr>";
         echo "<img src=" . $profilkep . " alt='Profilkép' height='200'/>";
-        echo "<div id='adatok'>";
+        echo "<div class='adatok'>";
         echo "<p>Vendég neve: ";
         if ($foglalas["sex"] == "m") {
             echo "Mr. ";

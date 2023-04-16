@@ -1,15 +1,6 @@
 <?php
 session_start();
 include "kozos.php";
-// süti
-$see = 1;
-
-if (isset($_COOKIE["visits"])) {
-    $see = $_COOKIE["visits"] + 1;
-}
-setcookie("visits", $see, time() + (60 * 60 * 24 * 30), "/");
-echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $see. látogatásod.</p>";
-
 
 if (!isset($_SESSION["user"])) {
     header("Location: login.php");
@@ -49,6 +40,16 @@ function nemet_konvertal($betujel)
 
 <body>
 <header>
+    <?php
+    // süti
+    $see = 1;
+
+    if (isset($_COOKIE["visits"])) {
+        $see = $_COOKIE["visits"] + 1;
+    }
+    setcookie("visits", $see, time() + (60 * 60 * 24 * 30), "/");
+    echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $see. látogatásod.</p>";
+    ?>
     <div id="fejlec">
         <div class="header-area">
             <div class="container" id="row">
@@ -114,15 +115,21 @@ function nemet_konvertal($betujel)
                             Foglalások</a>
                     </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
-                    <?php if (isset($_SESSION["user"])) { ?>
-                        <li><a id="active" class="nav-link" href="profile.php">Profilom</a></li>
-                        <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
-                    <?php } else { ?>
-                        <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                        <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
-                    <?php } ?>
-                </div>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a id="active" class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
+                <?php } else { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </nav>

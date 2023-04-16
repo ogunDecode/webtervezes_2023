@@ -85,23 +85,21 @@ session_start();
                             Foglalások</a>
                     </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
-                    <?php if (isset($_SESSION["user"])) { ?>
-                        <li>
-                            <a class="nav-link" href="profile.php">Profilom</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="logout.php">Kijelentkezés</a>
-                        </li>
-                    <?php } else { ?>
-                        <li>
-                            <a class="nav-link" href="login.php">Bejelentkezés</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="signup.php">Regisztráció</a>
-                        </li>
-                    <?php } ?>
-                </div>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
+                <?php } else { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </nav>

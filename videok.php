@@ -88,10 +88,10 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) {
                         Szállások</a>
                 </li>
                 <?php if (!isset($_SESSION["user"]) || isset($_SESSION["user"]) && $_SESSION["user"]["perm"] !== 1) { ?>
-                <li>
-                    <a id="active" class="nav-link" href="videok.php">
-                        Videók</a>
-                </li>
+                    <li>
+                        <a id="active" class="nav-link" href="videok.php">
+                            Videók</a>
+                    </li>
                 <?php } ?>
                 <li>
                     <a class="nav-link" href="kapcsolat.php">
@@ -104,20 +104,26 @@ if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) {
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
                 <?php if (isset($_SESSION["user"])) { ?>
-                    <li><a class="nav-link" href="profile.php">Profilom</a></li>
-                    <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
                 <?php } else { ?>
-                    <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                    <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
                 <?php } ?>
-                </div>
             </ul>
         </div>
     </nav>

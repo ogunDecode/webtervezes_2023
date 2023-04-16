@@ -104,20 +104,26 @@ if (isset($_POST["login"])) {
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
                 <?php if (isset($_SESSION["user"])) { ?>
-                    <li><a class="nav-link" href="profile.php">Profilom</a></li>
-                    <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
                 <?php } else { ?>
-                    <li><a id="active" class="nav-link" href="login.php">Bejelentkezés</a></li>
-                    <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
+                    <li style="margin-left: auto; display: flex">
+                        <a id="active" class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
                 <?php } ?>
-                </div>
             </ul>
         </div>
     </nav>
@@ -126,7 +132,7 @@ if (isset($_POST["login"])) {
     <div id="navutan" class="bubbles logs">
         <h3>Kérlek jelentkezz be!</h3>
         <hr/>
-        
+
         <form action="login.php" method="POST">
             <div id="fields">
                 <label>Felhasználónév: <input type="text" name="felhasznalonev"/></label> <br/>

@@ -155,15 +155,21 @@ session_start();
                         Foglalások</a>
                 </li>
                 <?php } ?>
-                <div style="margin-left: auto; display: flex">
-                    <?php if (isset($_SESSION["user"])) { ?>
-                        <li><a class="nav-link" href="profile.php">Profilom</a></li>
-                        <li><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
-                    <?php } else { ?>
-                        <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
-                        <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
-                    <?php } ?>
-                </div>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="profile.php">Profilom</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
+                    </li>
+                <?php } else { ?>
+                    <li style="margin-left: auto; display: flex">
+                        <a class="nav-link" href="login.php">Bejelentkezés</a>
+                    </li>
+                    <li style="margin-left: 0; display: flex">
+                        <a class="nav-link" href="signup.php">Regisztráció</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </nav>
@@ -191,8 +197,7 @@ session_start();
                         </th>
                         <td>
                             <a href='foglalas.php?name=Hotel%20Villa%20Pamphili%20Roma'>
-                                <p>A Hotel Villa Pamphilini Róma külvárosában helyezkedik el egy órára Róma
-                                    közepétől
+                                <p>A Hotel Villa Pamphilini Róma külvárosában helyezkedik el egy órára Róma közepétől</p>
                             </a>
                         </td>
                     </tr>
