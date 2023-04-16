@@ -1,6 +1,15 @@
 <?php
 session_start();
-include "phpbeadando.php";
+include "kozos.php";
+// süti
+$see = 1;
+if (isset($_COOKIE["visits"])) {
+    $latogatasok = $_COOKIE["visits"] + 1;
+}
+setcookie("visits", $see, time() + (60*60*24*10), "/");
+echo "Üdvözöllek ismét! Ez a(z) $see. látogatásod.";
+
+
 
 if (!isset($_SESSION["user"])) {
     // ha a felhasználó nincs belépve (azaz a "user" munkamenet-változó értéke nem került korábban beállításra), akkor a login.php-ra navigálunk

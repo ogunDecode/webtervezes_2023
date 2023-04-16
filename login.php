@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "phpbeadando.php";
+include "kozos.php";
+
 $fiokok = loadUsers("users.txt");
 
 $uzenet = "";
@@ -18,7 +19,7 @@ if (isset($_POST["login"])) {
             if ($fiok["felhasznalonev"] === $felhasznalonev && password_verify($jelszo, $fiok["jelszo"])) {
                 $uzenet = "Sikeres belépés!";
                 $_SESSION["user"] = $fiok;              // a "user" nevű munkamenet-változó a bejelentkezett felhasználót reprezentáló tömböt fogja tárolni
-                header("Location: index.php");          // átirányítás
+                header("Location: profile.php");          // átirányítás
             }
         }
     }
