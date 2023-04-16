@@ -1,38 +1,39 @@
 <?php
-// a regisztrált felhasználók fájlból való betöltéséért felelő függvény
 
-function loadUsers($path) {
-  $users = [];
+function loadUsers($path)
+{
+    $users = [];
 
-  $file = fopen($path, "r");
-  if ($file === FALSE)
-    die("HIBA: A fájl megnyitása nem sikerült!");
+    $file = fopen($path, "r");
+    if ($file === FALSE)
+        die("HIBA: A fájl megnyitása nem sikerült!");
 
-  while (($line = fgets($file)) !== FALSE) {
-    $user = unserialize($line);
-    $users[] = $user;
-  }
+    while (($line = fgets($file)) !== FALSE) {
+        $user = unserialize($line);
+        $users[] = $user;
+    }
 
-  fclose($file);
-  return $users;
+    fclose($file);
+    return $users;
 }
 
-// a regisztrált felhasználók adatait fájlba író függvény
 
-function saveUsers($path, $users) {
-  $file = fopen($path, "w");
-  if ($file === FALSE)
-    die("HIBA: A fájl megnyitása nem sikerült!");
+function saveUsers($path, $users)
+{
+    $file = fopen($path, "w");
+    if ($file === FALSE)
+        die("HIBA: A fájl megnyitása nem sikerült!");
 
-  foreach($users as $user) {
-    $serialized_user = serialize($user);
-    fwrite($file, $serialized_user . "\n");
-  }
+    foreach ($users as $user) {
+        $serialized_user = serialize($user);
+        fwrite($file, $serialized_user . "\n");
+    }
 
-  fclose($file);
+    fclose($file);
 }
 
-function loadFoglalasok($path) {
+function loadFoglalasok($path)
+{
     $foglalasok = [];
 
     $file = fopen($path, "r");
@@ -47,44 +48,47 @@ function loadFoglalasok($path) {
     fclose($file);
     return $foglalasok;
 }
-function saveFoglalasok($path, $foglalasok) {
+
+function saveFoglalasok($path, $foglalasok)
+{
     $file = fopen($path, "w");
     if ($file === FALSE)
         die("HIBA: A fájl megnyitása nem sikerült!");
 
-    foreach($foglalasok as $foglalas) {
+    foreach ($foglalasok as $foglalas) {
         $serialized_reservation = serialize($foglalas);
         fwrite($file, $serialized_reservation . "\n");
     }
 
     fclose($file);
 }
-// a profilkép feltöltését végző függvény
 
-function uploadProfilePicture($username) {
-  global $fajlfeltoltes_hiba;    // ez a változó abban a fájlban található, amiben ezt a függvényt meghívjuk, ezért újradeklaráljuk globálisként
+function uploadProfilePicture($username)
+{
+    global $fajlfeltoltes_hiba;
 
-  if (isset($_FILES["profile-pic"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {  // ha töltöttek fel fájlt...
-    $allowed_extensions = ["png", "jpg", "jpeg"];                                           // az engedélyezett kiterjesztések tömbje
-    $extension = strtolower(pathinfo($_FILES["profile-pic"]["name"], PATHINFO_EXTENSION));  // a feltöltött fájl kiterjesztése
+    if (isset($_FILES["profile-pic"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {
+        $allowed_extensions = ["png", "jpg", "jpeg"];
+        $extension = strtolower(pathinfo($_FILES["profile-pic"]["name"], PATHINFO_EXTENSION));
 
-    if (in_array($extension, $allowed_extensions)) {      // ha a fájl kiterjesztése megfelelő...
-      if ($_FILES["profile-pic"]["error"] === 0) {        // ha a fájl feltöltése sikeres volt...
-        if ($_FILES["profile-pic"]["size"] <= 31457280) { // ha a fájlméret nem nagyobb 30 MB-nál
-          $path = "img/" . $username . "." . $extension;   // a cél útvonal összeállítása
+        if (in_array($extension, $allowed_extensions)) {
+            if ($_FILES["profile-pic"]["error"] === 0) {
+                if ($_FILES["profile-pic"]["size"] <= 31457280) {
+                    $path = "img/" . $username . "." . $extension;
 
-          if (!move_uploaded_file($_FILES["profile-pic"]["tmp_name"], $path)) { // fájl átmozgatása a cél útvonalra
-            $fajlfeltoltes_hiba = "A fájl átmozgatása nem sikerült!";
-          }
+                    if (!move_uploaded_file($_FILES["profile-pic"]["tmp_name"], $path)) {
+                        $fajlfeltoltes_hiba = "A fájl átmozgatása nem sikerült!";
+                    }
+                } else {
+                    $fajlfeltoltes_hiba = "A fájl mérete túl nagy!";
+                }
+            } else {
+                $fajlfeltoltes_hiba = "A fájlfeltöltés nem sikerült!";
+            }
         } else {
-          $fajlfeltoltes_hiba = "A fájl mérete túl nagy!";
+            $fajlfeltoltes_hiba = "A fájl kiterjesztése nem megfelelő!";
         }
-      } else {
-        $fajlfeltoltes_hiba = "A fájlfeltöltés nem sikerült!";
-      }
-    } else {
-      $fajlfeltoltes_hiba = "A fájl kiterjesztése nem megfelelő!";
     }
-  }
 }
+
 ?>

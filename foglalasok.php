@@ -32,15 +32,17 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 
         .bubbles {
             min-height: 370px;
-            padding-bottom: 0px;
+            padding-bottom: 0;
             overflow: auto;
             width: 60%;
             margin-left: 20%;
         }
-        #adatok{
+
+        #adatok {
             overflow: auto;
         }
-        .bubbles img{
+
+        .bubbles img {
             float: left;
             margin-right: 20px;;
         }
@@ -129,7 +131,7 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 </header>
 <main>
     <?php
-    $length = count($foglalasok)+1;
+    $length = count($foglalasok) + 1;
     foreach (array_reverse($foglalasok) as $key => $foglalas) {
         $profilkep = "img/default.png";
         $utvonal = "img/" . $foglalas["felh"];

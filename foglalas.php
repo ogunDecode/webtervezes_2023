@@ -6,12 +6,12 @@ $foglalasok = loadFoglalasok("foglalasok.txt");
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
-}else if ($_SESSION["user"]["perm"] == 1){
+} else if ($_SESSION["user"]["perm"] == 1) {
     header('Location: foglalasok.php');
     exit();
 }
 ?>
-<?php // a szálloda nevét még nem csináltam mivel az a link adja majd
+<?php
 
 $hibak = [];
 
@@ -69,17 +69,17 @@ if (isset($_POST["submit-btn"])) {
         $op3 = $_POST["op-3"];
 
 
-    if (count($hibak) === 0) {   // sikeres foglalas
+    if (count($hibak) === 0) {
         $felh = $_SESSION["user"]["felhasznalonev"];
         $foglalasok[] = ["teljesnev" => $teljesnev, "szallas" => $szallas, "szuletes" => $szuletes, "email" => $email, "sex" => $sex, "introd" => $introd, "szobak" => $szobak, "ejszakak" => $ejszakak, "op1" => $op1, "op2" => $op2, "op3" => $op3, "felh" => $felh];
         saveFoglalasok("foglalasok.txt", $foglalasok);
         $siker = TRUE;
-    } else {                    // sikertelen foglalas
+    } else {
         $siker = FALSE;
     }
 }
 ?>
-<?php // majd a szolgáltatásokat át kell írni hogy csak op-1 legyen a nevük
+<?php
 $kira = "";
 if (isset($_POST["elkuld"])) {
     if (isset($_POST["op-1"])) {
@@ -166,10 +166,10 @@ if (isset($_POST["elkuld"])) {
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
@@ -247,9 +247,9 @@ if (isset($_POST["elkuld"])) {
         </form>
         <div id="errors">
             <?php
-            if (isset($siker) && $siker === TRUE) {  // ha nem volt hiba, akkor a regisztráció sikeres
+            if (isset($siker) && $siker === TRUE) {
                 echo "<p>Sikeres Foglalas</p>";
-            } else {                                // az esetleges hibákat kiírjuk egy-egy bekezdésben
+            } else {
                 foreach ($hibak as $hiba) {
                     echo "<p>" . $hiba . "</p>";
                 }

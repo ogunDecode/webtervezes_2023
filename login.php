@@ -18,8 +18,8 @@ if (isset($_POST["login"])) {
         foreach ($fiokok as $fiok) {
             if ($fiok["felhasznalonev"] === $felhasznalonev && password_verify($jelszo, $fiok["jelszo"])) {
                 $uzenet = "Sikeres belépés!";
-                $_SESSION["user"] = $fiok;              // a "user" nevű munkamenet-változó a bejelentkezett felhasználót reprezentáló tömböt fogja tárolni
-                header("Location: profile.php");          // átirányítás
+                $_SESSION["user"] = $fiok;
+                header("Location: profile.php");
             }
         }
     }

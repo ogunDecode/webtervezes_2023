@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-
 <!doctype html>
 <html lang="hu">
 
@@ -81,10 +80,10 @@ session_start();
                     </li>
                 <?php } ?>
                 <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["perm"] == 1) { ?>
-                <li>
-                    <a class="nav-link" href="foglalasok.php">
-                        Foglalások</a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="foglalasok.php">
+                            Foglalások</a>
+                    </li>
                 <?php } ?>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>

@@ -12,11 +12,10 @@ echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $s
 
 
 if (!isset($_SESSION["user"])) {
-    // ha a felhasználó nincs belépve (azaz a "user" munkamenet-változó értéke nem került korábban beállításra), akkor a login.php-ra navigálunk
     header("Location: login.php");
 }
 function nemet_konvertal($betujel)
-{        // egy segédfüggvény, amely visszaadja a betűjelnek megfelelő nemet
+{
     switch ($betujel) {
         case "F" :
             return "férfi";
@@ -129,42 +128,38 @@ function nemet_konvertal($betujel)
     </nav>
 </header>
 <main>
-    <div id="navutan" class="bubbles">
+    <div id="navutan" class="bubbles logs">
         <h3>Profilom</h3>
         <hr/>
 
         <?php
-        // a profilkép elérési útvonalának eltárolása egy változóban
 
-        $profilkep = "img/default.png";      // alapértelmezett kép, amit akkor jelenítünk meg, ha valakinek nincs feltöltött profilképe
-        $utvonal = "img/" . $_SESSION["user"]["felhasznalonev"]; // a kép neve a felhasználó nevével egyezik meg
+        $profilkep = "img/default.png";
+        $utvonal = "img/" . $_SESSION["user"]["felhasznalonev"];
 
-        $kiterjesztesek = ["png", "jpg", "jpeg"];     // a lehetséges kiterjesztések, amivel egy profilkép rendelkezhet
+        $kiterjesztesek = ["png", "jpg", "jpeg"];
 
-        foreach ($kiterjesztesek as $kiterjesztes) {  // minden kiterjesztésre megnézzük, hogy létezik-e adott kiterjesztéssel profilképe a felhasználónak
+        foreach ($kiterjesztesek as $kiterjesztes) {
             if (file_exists($utvonal . "." . $kiterjesztes)) {
-                $profilkep = $utvonal . "." . $kiterjesztes;  // ha megtaláltuk a felhasználó profilképét, eltároljuk annak az elérési útvonalát egy változóban
+                $profilkep = $utvonal . "." . $kiterjesztes;
             }
         }
         ?>
         <?php
-        // a profilkép módosítását elvégző PHP kód
 
-        if (isset($_POST["upload-btn"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {  // ha töltöttek fel fájlt...
-            $fajlfeltoltes_hiba = "";                                       // változó a fájlfeltöltés során adódó esetleges hibaüzenet tárolására
-            uploadProfilePicture($_SESSION["user"]["felhasznalonev"]);      // a kozos.php-ban definiált profilkép feltöltést végző függvény meghívása
+        if (isset($_POST["upload-btn"]) && is_uploaded_file($_FILES["profile-pic"]["tmp_name"])) {
+            $fajlfeltoltes_hiba = "";
+            uploadProfilePicture($_SESSION["user"]["felhasznalonev"]);
 
-            $kit = strtolower(pathinfo($_FILES["profile-pic"]["name"], PATHINFO_EXTENSION));    // a feltöltött profilkép kiterjesztése
-            $utvonal = "img/" . $_SESSION["user"]["felhasznalonev"] . "." . $kit;            // a feltöltött profilkép teljes elérési útvonala
-
-            // ha nem volt hiba a fájlfeltöltés során, akkor töröljük a régi profilképet, egyébként pedig kiírjuk a fájlfeltöltés során adódó hibát
+            $kit = strtolower(pathinfo($_FILES["profile-pic"]["name"], PATHINFO_EXTENSION));
+            $utvonal = "img/" . $_SESSION["user"]["felhasznalonev"] . "." . $kit;
 
             if ($fajlfeltoltes_hiba === "") {
-                if ($utvonal !== $profilkep && $profilkep !== "img/default.png") {   // az ugyanolyan névvel feltöltött képet és a default.png-t nem töröljük
-                    unlink($profilkep);                         // régi profilkép törlése
+                if ($utvonal !== $profilkep && $profilkep !== "img/default.png") {
+                    unlink($profilkep);
                 }
 
-                header("Location: profile.php");              // weboldal újratöltése
+                header("Location: profile.php");
             } else {
                 echo "<p>" . $fajlfeltoltes_hiba . "</p>";
             }
@@ -173,31 +168,24 @@ function nemet_konvertal($betujel)
 
         ?>
         <?php
-        // load the users into a 2-dimensional array
         $fiokok = loadUsers("users.txt");
 
-        // find the index of the user to remove
         foreach ($fiokok as $key => $fiok) {
             if ($fiok['felhasznalonev'] == $_SESSION["user"]["felhasznalonev"]) {
                 $index = $key;
                 break;
             }
         }
-        // check if password was submitted and is correct
         if (isset($_POST['password']) && password_verify($_POST['password'], $fiokok[$index]['jelszo'])) {
-            // remove the user from the array
             if ($index !== false) {
                 array_splice($fiokok, $index, 1);
-                // save the updated array to the file
                 saveUsers("users.txt", $fiokok);
                 session_unset();
                 session_destroy();
-                // redirect to a success page
                 header("Location: index.php");
                 exit();
             }
         } elseif (isset($_POST['password'])) {
-            // password was submitted but is incorrect
             echo "Üresen hagyott vagy helytelen jelszó. Próbáld újra";
         }
         ?>
@@ -205,7 +193,7 @@ function nemet_konvertal($betujel)
             <tr>
                 <th colspan="2">
                     <img src="<?php echo $profilkep; ?>" alt="Profilkép" height="200"/>
-                    <?php if ($_SESSION["user"]["felhasznalonev"] !== "default") { /* a "default" nevű példa felhasználó esetén ne engedélyezzük a profilkép módosítását */ ?>
+                    <?php if ($_SESSION["user"]["felhasznalonev"] !== "default") { ?>
                         <form action="profile.php" method="POST" enctype="multipart/form-data">
                             <input type="file" name="profile-pic" accept="image/*"/>
                             <input class="fgomb" type="submit" name="upload-btn" value="Profilkép módosítása"/>
@@ -224,10 +212,6 @@ function nemet_konvertal($betujel)
             <tr>
                 <th>Nem:</th>
                 <td><?php echo nemet_konvertal($_SESSION["user"]["nem"]); ?></td>
-            </tr>
-            <tr>
-                <th>Hobbik:</th>
-                <td><?php echo implode(", ", $_SESSION["user"]["hobbik"]); ?></td>
             </tr>
         </table>
         <form action="profile.php" method="POST" enctype="multipart/form-data">
@@ -256,12 +240,16 @@ function nemet_konvertal($betujel)
                 } else {
                     if ($_SESSION['user']['nem'] == "N") {
                         $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                        $form_id = "idelete";
                     } else if ($_SESSION['user']['nem'] == "F") {
                         $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                        $form_id = "idelete";
                     } else if ($_SESSION['user']['nem'] == "E") {
                         $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                        $form_id = "idelete";
                     } else {
                         $uzenet = "Ezt üzened a felhasználónak: $beirt_szoveg";
+                        $form_id = "idelete";
                     }
                 }
             }
@@ -286,11 +274,11 @@ function nemet_konvertal($betujel)
         <form action="profile.php" method="POST" id="<?php echo $form_id; ?>">
             <p><?php echo $message; ?></p>
             <input type="text" name="szoveg"/>
-            <input type="submit" name="elkuld"/> <br/>
+            <input class="fgomb" type="submit" name="elkuld"/> <br/>
         </form>
         <?php
         if (isset($uzenet))
-        echo "<p>" . $uzenet . "</p>";
+            echo "<p>" . $uzenet . "</p>";
         ?>
     </div>
 </main>

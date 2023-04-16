@@ -1,3 +1,4 @@
-a:6:{s:14:"felhasznalonev";s:5:"admin";s:6:"jelszo";s:60:"$2y$10$HXxKHoY/psaroD9yo6RgUuBC/x.IS4pDJLhXHoom2cSJG9pKhA2H.";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"E";s:6:"hobbik";a:2:{i:0;s:12:"programozás";i:1;s:15:"mémnézegetés";}s:4:"perm";i:1;}
-a:6:{s:14:"felhasznalonev";s:5:"Edwin";s:6:"jelszo";s:60:"$2y$10$e90f0T9WviL4El6.QUUVhu6hlBq09azQfRNEqb29doNFsjk5xxj.q";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:6:"hobbik";a:3:{i:0;s:12:"programozás";i:1;s:15:"mémnézegetés";i:2;s:6:"alvás";}s:4:"perm";i:0;}
-a:6:{s:14:"felhasznalonev";s:6:"Attila";s:6:"jelszo";s:60:"$2y$10$Nw3FWxcrJ/irg/lvifNxruVTNKK34RJQ1q3cA5Vec2N08C8dqDAWm";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:6:"hobbik";a:2:{i:0;s:12:"programozás";i:1;s:7:"főzés";}s:4:"perm";i:0;}
+a:5:{s:14:"felhasznalonev";s:5:"Edwin";s:6:"jelszo";s:60:"$2y$10$omA6bBCn3acP5JT34ZLBeu080MzRNU.NSDlMMxClmGByr/Dvpv0vq";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:4:"perm";i:0;}
+a:5:{s:14:"felhasznalonev";s:6:"Attila";s:6:"jelszo";s:60:"$2y$10$vhlmn0oZaNJWRmS6hhiTSupJwlpBsZ3ynoCaeDt2rVng1ZjYOUl.S";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"F";s:4:"perm";i:0;}
+a:5:{s:14:"felhasznalonev";s:5:"admin";s:6:"jelszo";s:60:"$2y$10$wzvTWbYoNmXWK46RYIVXGumMSm4rbJt40d3LP2h0GF74DfwXp6.Ou";s:7:"eletkor";s:2:"23";s:3:"nem";s:1:"E";s:4:"perm";i:1;}
+a:5:{s:14:"felhasznalonev";s:4:"Anna";s:6:"jelszo";s:60:"$2y$10$8Sj2k1fRa0LXbcYVgtSlgO3Z6jLoW2uPl8wQhpT1FAGhoSNXGbAtS";s:7:"eletkor";s:2:"22";s:3:"nem";s:1:"N";s:4:"perm";i:0;}
