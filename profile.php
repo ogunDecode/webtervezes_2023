@@ -3,11 +3,12 @@ session_start();
 include "kozos.php";
 // süti
 $see = 1;
+
 if (isset($_COOKIE["visits"])) {
-    $latogatasok = $_COOKIE["visits"] + 1;
+    $see = $_COOKIE["visits"] + 1;
 }
-setcookie("visits", $see, time() + (60*60*24*10), "/");
-echo "Üdvözöllek ismét! Ez a(z) $see. látogatásod.";
+setcookie("visits", $see, time() + (60*60*24*30), "/");
+echo "<p style='text-align: center; margin: 0;'>Üdvözöllek ismét! Ez a(z) $see. látogatásod.</p>";
 
 
 
