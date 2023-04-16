@@ -203,7 +203,7 @@ if (isset($_POST["regiszt"])) {
         ?>
     </div>
 </main>
-<footer>
+<footer id="long">
     <div>
         <p>
             <small>Copyright © 2023 Sóki Krisztián és Ogunde Edwin. Minden jog fenntartva. | Design: Webterv Gy.</small>

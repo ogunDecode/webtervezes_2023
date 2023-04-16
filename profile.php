@@ -6,13 +6,21 @@ if (!isset($_SESSION["user"])) {
     // ha a felhasználó nincs belépve (azaz a "user" munkamenet-változó értéke nem került korábban beállításra), akkor a login.php-ra navigálunk
     header("Location: login.php");
 }
-function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja a betűjelnek megfelelő nemet
+function nemet_konvertal($betujel)
+{        // egy segédfüggvény, amely visszaadja a betűjelnek megfelelő nemet
     switch ($betujel) {
-        case "F" : return "férfi"; break;
-        case "N" : return "nő"; break;
-        case "E" : return "egyéb"; break;
+        case "F" :
+            return "férfi";
+            break;
+        case "N" :
+            return "nő";
+            break;
+        case "E" :
+            return "egyéb";
+            break;
     }
 }
+
 ?>
 
 <!doctype html>
@@ -89,7 +97,7 @@ function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja 
                         <a class="nav-link" href="foglalas.php">
                             Foglalás</a>
                     </li>
-                <?php }?>
+                <?php } ?>
                 <div style="margin-left: auto; display: flex">
                     <?php if (isset($_SESSION["user"])) { ?>
                         <li><a id="active" class="nav-link" href="profile.php">Profilom</a></li>
@@ -97,7 +105,7 @@ function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja 
                     <?php } else { ?>
                         <li><a class="nav-link" href="login.php">Bejelentkezés</a></li>
                         <li><a class="nav-link" href="signup.php">Regisztráció</a></li>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </ul>
         </div>
@@ -144,8 +152,38 @@ function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja 
                 echo "<p>" . $fajlfeltoltes_hiba . "</p>";
             }
         }
-        ?>
 
+
+        ?>
+        <?php
+        // load the users into a 2-dimensional array
+        $fiokok = loadUsers("users.txt");
+
+        // find the index of the user to remove
+        foreach ($fiokok as $key => $fiok) {
+            if ($fiok['felhasznalonev'] == $_SESSION["user"]["felhasznalonev"]) {
+                $index = $key;
+                break;
+            }
+        }
+        // check if password was submitted and is correct
+        if (isset($_POST['password']) && password_verify($_POST['password'], $fiokok[$index]['jelszo'])) {
+            // remove the user from the array
+            if ($index !== false) {
+                array_splice($fiokok, $index, 1);
+                // save the updated array to the file
+                saveUsers("users.txt", $fiokok);
+                session_unset();
+                session_destroy();
+                // redirect to a success page
+                header("Location: index.php");
+                exit();
+            }
+        } elseif (isset($_POST['password'])) {
+            // password was submitted but is incorrect
+            echo "Üresen hagyott vagy helytelen jelszó. Próbáld újra";
+        }
+        ?>
         <table class="profile-data">
             <tr>
                 <th colspan="2">
@@ -153,7 +191,7 @@ function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja 
                     <?php if ($_SESSION["user"]["felhasznalonev"] !== "default") { /* a "default" nevű példa felhasználó esetén ne engedélyezzük a profilkép módosítását */ ?>
                         <form action="profile.php" method="POST" enctype="multipart/form-data">
                             <input type="file" name="profile-pic" accept="image/*"/>
-                            <input type="submit" name="upload-btn" value="Profilkép módosítása"/>
+                            <input class="fgomb" type="submit" name="upload-btn" value="Profilkép módosítása"/>
                         </form>
                     <?php } ?>
                 </th>
@@ -175,6 +213,11 @@ function nemet_konvertal($betujel) {		// egy segédfüggvény, amely visszaadja 
                 <td><?php echo implode(", ", $_SESSION["user"]["hobbik"]); ?></td>
             </tr>
         </table>
+        <form action="profile.php" method="POST" enctype="multipart/form-data">
+            <label for="password">Jelszó:</label>
+            <input type="password" id="password" name="password">
+            <button class="fgomb" type="submit" name="delete" value="1">Felhasználó törlése</button>
+        </form>
     </div>
 </main>
 <footer>

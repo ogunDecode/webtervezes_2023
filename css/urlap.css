@@ -15,11 +15,11 @@ input, select, textarea, fieldset {
 }
 
 
-input[type='reset'] {
+button[name*="delete"], input[type='reset'] {
     background-color: #FF6F59;
 }
 
-input[type='reset']:hover {
+button[name*="delete"]:hover, input[type='reset']:hover {
     background-color: #f1a091;
     cursor: pointer;
 }
@@ -141,3 +141,12 @@ fieldset {
 #texts p{
     margin: 10px 0 0;
 }
+
+button[name*="delete"]{
+    margin-top: 5px;
+    width: 200px;
+}
+
+input[name*="upload-btn"]{
+     width: 190px;
+ }
